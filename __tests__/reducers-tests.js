@@ -9,8 +9,12 @@ const mockState = {
     title: 'JavaScript',
     questions: [
       {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
+        question: 'Question 1?',
+        answer: 'Answer 1'
+      },
+      {
+        question: 'Question 2?',
+        answer: 'Answer 2'
       }
     ]
   }
@@ -23,9 +27,21 @@ const mockNewDeckState = {
     }
   }
 
-const mockQuestions = {
-  question: 'What is a closure?',
-  answer: 'The combination of a function and the lexical environment within which that function was declared.'
+const mockNewQuestionState = {
+  JavaScript: {
+    title: 'JavaScript',
+    questions: [
+      {
+        question: 'Question 1?',
+        answer: 'Answer 1'
+      }
+    ]
+    }
+}
+
+const mockQuestion = {
+  question: 'Question 2?',
+  answer: 'Answer 2'
 }
 
 describe('data reducer', () => {
@@ -41,13 +57,10 @@ describe('data reducer', () => {
   ).toEqual(mockNewDeckState)
   })
   it('should add a new question and answer to a deck', () => {
-    expect(data(mockNewDeckState, {
+    expect(data(mockNewQuestionState, {
       type: ADD_CARD,
       title: 'JavaScript',
-      data: {
-        question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      },
+      data: mockQuestion,
     })
   ).toEqual(mockState)
   })
