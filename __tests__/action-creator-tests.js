@@ -6,12 +6,12 @@ import * as actions from '../actions';
 
 describe('actions', () => {
   it('should create an action to add a deck', () => {
-    const data = 'JavaScript';
+    const title = 'JavaScript';
     const expectedAction = {
       type: ADD_DECK,
-      data,
+      title,
     };
-    expect(actions.addDeck(data)).toEqual(expectedAction)
+    expect(actions.addDeck(title)).toEqual(expectedAction)
   });
   it('should create an action to add card to a deck', () => {
     const title = 'JavaScript';

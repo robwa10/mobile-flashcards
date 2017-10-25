@@ -3,9 +3,9 @@ import {
   ADD_CARD,
 } from './action-constants';
 
-export const addDeck = data => ({
+export const addDeck = title => ({
   type: ADD_DECK,
-  data,
+  title,
 })
 
 export const addCardToDeck = (title, data) => ({
