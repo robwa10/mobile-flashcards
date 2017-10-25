@@ -1,6 +1,7 @@
 import {
   ADD_DECK,
   ADD_CARD,
+  GET_DECK,
 } from '../actions/action-constants';
 import * as actions from '../actions';
 
@@ -25,5 +26,13 @@ describe('actions', () => {
       data,
     };
     expect(actions.addCardToDeck(title, data)).toEqual(expectedAction)
+  });
+  it('should create an action to return a deck', () => {
+    const id = 'JavaScript';
+    const expectedAction = {
+      type: GET_DECK,
+      id
+    };
+    expect(actions.getDeck(id)).toEqual(expectedAction)
   });
 })
