@@ -7,9 +7,15 @@ import { combineReducers } from 'redux';
 const data = (state = {}, action) => {
   switch (action.type) {
     case ADD_DECK:
-      return {};
+      return {
+        ...state, action.title: { title: action.title, questions: [] }
+      };
     case ADD_CARD:
-      return {};
+      return {
+        ...state, action.title: {
+          questions: [...state.questions, action.data]
+        }
+      };
     default:
       return state;
   }
