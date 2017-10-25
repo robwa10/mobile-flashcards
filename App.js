@@ -3,11 +3,25 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
+import throttle from 'lodash/throttle';
+import { loadState, saveState } from './utils/localStorage';
+
+const persistedState = loadState();
+const store = createStore(
+  reducer,
+  persistedState
+);
+
+store.subscribe(throttle(() => {
+  saveState({
+    store.getState()
+  });
+}, 1000));
 
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={store}>
         <View style={styles.container}>
           <Text>Open up App.js to start working on your app!</Text>
           <Text>Changes you make will automatically reload.</Text>
