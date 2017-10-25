@@ -14,7 +14,7 @@ const store = createStore(
 
 store.subscribe(throttle(() => {
   saveState({
-    store.getState()
+    data: store.getState().data
   });
 }, 1000));
 
