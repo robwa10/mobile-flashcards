@@ -2,47 +2,15 @@ import {
   ADD_DECK,
   ADD_CARD,
 } from '../actions/action-constants';
+import {
+  mockState,
+  mockNewDeckState,
+  mockNewQuestionState,
+  mockQuestion,
+  mockDeck,
+} from '../utils/mock-state-data';
 import data from '../reducers/data-reducer';
-
-const mockState = {
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'Question 1?',
-        answer: 'Answer 1'
-      },
-      {
-        question: 'Question 2?',
-        answer: 'Answer 2'
-      }
-    ]
-  }
-}
-
-const mockNewDeckState = {
-  JavaScript: {
-    title: 'JavaScript',
-    questions: []
-    }
-  }
-
-const mockNewQuestionState = {
-  JavaScript: {
-    title: 'JavaScript',
-    questions: [
-      {
-        question: 'Question 1?',
-        answer: 'Answer 1'
-      }
-    ]
-    }
-}
-
-const mockQuestion = {
-  question: 'Question 2?',
-  answer: 'Answer 2'
-}
+import deck from '../reducers/deck-reducer';
 
 describe('data reducer', () => {
   it('should return the initial state', () => {
