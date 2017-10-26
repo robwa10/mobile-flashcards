@@ -2,6 +2,7 @@ import {
   ADD_DECK,
   ADD_CARD,
 } from '../actions/action-constants';
+import { mockState } from '../utils/mock-state-data';
 
 function addQuestion(state, title, data) {
   return {
@@ -13,7 +14,7 @@ function addQuestion(state, title, data) {
   }
 }
 
-const data = (state = {}, action) => {
+const data = (state = mockState, action) => {
   switch (action.type) {
     case ADD_DECK:
       return {

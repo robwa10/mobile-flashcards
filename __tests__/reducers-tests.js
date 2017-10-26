@@ -16,7 +16,7 @@ import deck from '../reducers/deck-reducer';
 describe('data reducer', () => {
   it('should return the initial state', () => {
     expect(data(undefined, {})
-  ).toEqual({})
+  ).toEqual(mockState)
   })
   it('should add new deck with title', () => {
     expect(data({}, {
