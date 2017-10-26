@@ -68,12 +68,12 @@ export const mockDeck = {
     title: 'JavaScript',
     questions: [
       {
-        question: 'Question 1?',
-        answer: 'Answer 1'
+        question: 'JavaScript Question 1?',
+        answer: 'JavaScript Answer 1'
       },
       {
-        question: 'Question 2?',
-        answer: 'Answer 2'
+        question: 'JavaScript Question 2?',
+        answer: 'JavaScript Answer 2'
       }
     ]
   }
