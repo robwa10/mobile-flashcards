@@ -17,6 +17,6 @@ export const saveState = (state) => {
     const serializedState = JSON.stringify(state);
     AsyncStorage.setItem('state', serializedState);
   } catch (err) {
-    // Ignore write errors.
+    console.log("There was a write error.");
   }
 };
