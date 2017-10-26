@@ -3,12 +3,25 @@ export const mockState = {
     title: 'JavaScript',
     questions: [
       {
-        question: 'Question 1?',
-        answer: 'Answer 1'
+        question: 'JavaScript Question 1?',
+        answer: 'JavaScript Answer 1'
       },
       {
-        question: 'Question 2?',
-        answer: 'Answer 2'
+        question: 'JavaScript Question 2?',
+        answer: 'JavaScript Answer 2'
+      }
+    ]
+  },
+  React: {
+    title: 'React',
+    questions: [
+      {
+        question: 'React Question 1?',
+        answer: 'React Answer 1'
+      },
+      {
+        question: 'React Question 2?',
+        answer: 'React Answer 2'
       }
     ]
   }
@@ -26,16 +39,29 @@ export const mockNewQuestionState = {
     title: 'JavaScript',
     questions: [
       {
-        question: 'Question 1?',
-        answer: 'Answer 1'
+        question: 'JavaScript Question 1?',
+        answer: 'JavaScript Answer 1'
       }
     ]
-    }
+  },
+  React: {
+    title: 'React',
+    questions: [
+      {
+        question: 'React Question 1?',
+        answer: 'React Answer 1'
+      },
+      {
+        question: 'React Question 2?',
+        answer: 'React Answer 2'
+      }
+    ]
+  }
 }
 
 export const mockQuestion = {
-  question: 'Question 2?',
-  answer: 'Answer 2'
+  question: 'JavaScript Question 2?',
+  answer: 'JavaScript Answer 2'
 }
 
 export const mockDeck = {
