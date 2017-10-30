@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import MyButton from '../components/my-button';
+import DeckInfoCard from '../components/deck-info-card';
 
 class DecksList extends Component {
 
   mapDeckTitles() {
+    let data = this.props.data;
     let myArray = [];
-    for(let key in this.props.data) {
-      myArray.push({key: key})
+    for(let key in data) {
+      myArray.push({
+        key: key,
+        cards: data[key]['questions'].length
+      })
     }
     return myArray
   }
 
   renderDeckCard = (item) => (
-    <MyButton
+    <DeckInfoCard
       onPress={() => this.getCard(item.key)}
       title={item.key}
-      touchableStyles={styles.touchableStyles}
+      cards={item.cards}
+      parentStyles={styles.parentStyles}
       textStyles={styles.textStyles}
     />
   )
@@ -43,16 +48,15 @@ const mapStateToProps = ({ data }) => ({
 export default connect(mapStateToProps)(DecksList);
 
 const styles = StyleSheet.create({
-  touchableStyles: {
+  parentStyles: {
     backgroundColor: '#FF8A65',
+    paddingVertical: 20,
     marginHorizontal: 5,
     marginVertical: 2,
-    borderRadius: 10,
   },
   textStyles: {
     textAlign: 'center',
     fontSize: 24,
     color: '#212121',
-    paddingVertical: 20,
   }
 });
