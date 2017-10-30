@@ -7,7 +7,7 @@ export default DeckInfoCard = (
       <TouchableHighlight onPress={onPress}>
         <View style={parentStyles}>
           <Text style={textStyles}>{title}</Text>
-          <Text style={textStyles}>{`Decks: ${cards}`}</Text>
+          <Text style={textStyles}>{`${cards} cards`}</Text>
         </View>
       </TouchableHighlight>
   )
