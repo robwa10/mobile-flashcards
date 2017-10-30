@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import DeckCard from '../components/deck-card';
+import MyButton from '../components/my-button';
 
 class DecksList extends Component {
 
@@ -14,7 +14,7 @@ class DecksList extends Component {
   }
 
   renderDeckCard = (item) => (
-    <DeckCard
+    <MyButton
       onPress={() => this.getCard(item.key)}
       title={item.key}
       touchableStyles={styles.touchableStyles}

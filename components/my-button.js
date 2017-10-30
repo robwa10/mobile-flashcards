@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableHighlight } from 'react-native';
 
-export default DeckCard = (
+export default MyButton = (
     { title, onPress, touchableStyles, textStyles }) => {
     return (
       <TouchableHighlight
