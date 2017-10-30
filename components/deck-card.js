@@ -11,15 +11,17 @@ export default function DeckCard({ title }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
     alignSelf: 'stretch',
-    margin: 10,
+    marginHorizontal: 5,
+    marginVertical: 2,
   },
   text: {
     textAlign: 'center',
     fontSize: 24,
     color: '#212121',
     backgroundColor: '#FF8A65',
-    padding: 10,
+    paddingVertical: 20,
+    marginVertical: 2,
+    borderRadius: 10,
   }
 });
