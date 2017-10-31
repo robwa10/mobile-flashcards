@@ -6,6 +6,7 @@ import reducer from './reducers';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';
 import DecksList from './containers/decks-list';
+import DeckView from './containers/deck-view';
 
 const persistedState = loadState();
 const store = createStore(
@@ -20,11 +21,12 @@ store.subscribe(throttle(() => {
 }, 1000));
 
 export default class App extends React.Component {
+
   render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <DecksList />
+          <DeckView />
         </View>
       </Provider>
     );
