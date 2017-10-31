@@ -8,6 +8,7 @@ import { loadState, saveState } from './utils/localStorage';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import DecksList from './containers/decks-list';
 import DeckView from './containers/deck-view';
+import AddDeck from './containers/add-deck';
 
 const persistedState = loadState();
 const store = createStore(
@@ -29,11 +30,20 @@ const DeckScreen = () => (
   <DeckView />
 );
 
+const NewDeck = () => (
+  <AddDeck />
+)
 const Tabs = TabNavigator({
   Decks: {
     screen: DecksList,
     navigationOptions: {
       headerTitle: 'Home',
+    }
+  },
+  NewDeck: {
+    screen: NewDeck,
+    navigationOptions: {
+      headerTitle: 'New Deck',
     }
   },
 })
@@ -42,6 +52,12 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
   },
+  DeckScreen: {
+    screen: DeckScreen,
+    navigationOptions: {
+      headerTitle: 'Deck',
+    },
+  }
 });
 
 export default class App extends React.Component {
