@@ -26,7 +26,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <DeckView />
+          <DecksList />
         </View>
       </Provider>
     );
