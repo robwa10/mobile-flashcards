@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, FlatList, TouchableHighlight, View, Text } from 'react-native';
+import { StyleSheet,
+  FlatList,
+  TouchableHighlight,
+  View,
+  Text } from 'react-native';
 import { connect } from 'react-redux';
 import DeckInfoCard from '../components/deck-info-card';
 import { addDeck, getDeck } from '../actions';
@@ -19,7 +23,10 @@ class DecksList extends Component {
 
   newCard = () => (this.props.dispatch(addDeck(this.state.text)));
 
-  getCard = (title) => (this.props.dispatch(getDeck(title)));
+  getCard = (title) => {
+    this.props.dispatch(getDeck(title));
+    this.props.navigation.navigate('DeckScreen');
+  };
 
   renderDeckCard = (item) => (
     <DeckInfoCard
@@ -39,11 +46,6 @@ class DecksList extends Component {
           data={this.mapDeckTitles()}
           renderItem={({item}) => this.renderDeckCard(item)}
         />
-        <TouchableHighlight onPress={() => this.newCard()}>
-          <View style={styles.containerStyles}>
-            <Text style={styles.titleStyles}>Add a new deck</Text>
-          </View>
-        </TouchableHighlight>
       </View>
     );
   }
