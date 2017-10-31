@@ -5,6 +5,7 @@ import { createStore } from 'redux';
 import reducer from './reducers';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import DecksList from './containers/decks-list';
 import DeckView from './containers/deck-view';
 
@@ -20,13 +21,35 @@ store.subscribe(throttle(() => {
   });
 }, 1000));
 
-export default class App extends React.Component {
+const HomeScreen = () => (
+  <DecksList />
+);
 
+const DeckScreen = () => (
+  <DeckView />
+);
+
+const Tabs = TabNavigator({
+  Decks: {
+    screen: DecksList,
+    navigationOptions: {
+      headerTitle: 'Home',
+    }
+  },
+})
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+  },
+});
+
+export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <DecksList />
+          <MainNavigator />
         </View>
       </Provider>
     );
