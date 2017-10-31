@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { connect } from 'react-redux';
+import { getDeck } from '../actions';
 
 class DeckView extends Component {
+  buttonClick() {
+    this.props.dispatch(getDeck('Javascript'));
+  }
+
   render() {
-    const { deck } = this.props;
     return (
       <View>
-        <Text>{deck['title']}</Text>
-        <Text>{deck['questions'].length}</Text>
+        <Text>Title</Text>
+        <Text>Questions</Text>
         <Button
-          onPress={console.log('Add Card')}
-          label='Add Card'
+          onPress={() => this.buttonClick()}
+          title='Add Card'
+          accessibilityLabel='Add a new card.'
         />
         <Button
-          onPress={console.log('Start Quiz')}
-          label='Start Quiz'
+          onPress={() => this.buttonClick()}
+          title='Start Quiz'
+          accessibilityLabel='Start the quiz.'
         />
       </View>
     )
   }
 }
 
-const mapStateToProps = ({ deck }) => {
+const mapStateToProps = ({ deck }) => ({
   deck,
-}
+});
 
 export default connect(mapStateToProps)(DeckView);
