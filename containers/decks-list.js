@@ -7,6 +7,7 @@ import { StyleSheet,
 import { connect } from 'react-redux';
 import DeckInfoCard from '../components/deck-info-card';
 import { addDeck, getDeck } from '../actions';
+import { NavigationActions } from 'react-navigation'
 
 class DecksList extends Component {
   mapDeckTitles() {
@@ -25,21 +26,23 @@ class DecksList extends Component {
 
   getCard = (title) => {
     this.props.dispatch(getDeck(title));
-    this.props.navigation.navigate('DeckScreen');
   };
 
-  renderDeckCard = (item) => (
-    <DeckInfoCard
-      onPress={() => this.getCard(item.key)}
-      title={item.key}
-      cards={item.cards}
-      containerStyles={styles.containerStyles}
-      titleStyles={styles.titleStyles}
-      textStyles={styles.textStyles}
-    />
-  )
+  renderDeckCard = (item) => {
+    return (
+      <DeckInfoCard
+        onPress={() => NavigationActions.navigate('Details')}
+        title={item.key}
+        cards={item.cards}
+        containerStyles={styles.containerStyles}
+        titleStyles={styles.titleStyles}
+        textStyles={styles.textStyles}
+      />
+    )
+  }
 
   render() {
+    console.log('Navigation', NavigationActions);
     return (
       <View>
         <FlatList

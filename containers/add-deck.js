@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { addDeck } from '../actions';
+import { NavigationActions } from 'react-navigation'
 
 class AddDeck extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class AddDeck extends Component {
   buttonPress = () => {
     this.setState({ text: '' })
     this.props.dispatch(addDeck(this.state.text));
-    //this.props.navigation.navigate('Decks')
+    this.props.navigation.dispatch(NavigationActions.back({key: 'Decks'}))
 }
 
   render() {

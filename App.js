@@ -22,42 +22,25 @@ store.subscribe(throttle(() => {
   });
 }, 1000));
 
-const HomeScreen = () => (
-  <DecksList />
-);
+const HomeScreen = () => ( <DecksList /> );
 
-const DeckScreen = () => (
-  <DeckView />
-);
+const DetailsScreen = () => ( <DeckView /> );
 
-const NewDeck = () => (
-  <AddDeck />
-)
-const Tabs = TabNavigator({
-  Decks: {
-    screen: DecksList,
+const NewDeck = () => ( <AddDeck /> );
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: HomeScreen,
     navigationOptions: {
       headerTitle: 'Home',
     }
   },
-  NewDeck: {
-    screen: NewDeck,
+  Details: {
+    screen: DetailsScreen,
     navigationOptions: {
-      headerTitle: 'New Deck',
-    }
-  },
-})
-
-const MainNavigator = StackNavigator({
-  Home: {
-    screen: Tabs,
-  },
-  DeckScreen: {
-    screen: DeckScreen,
-    navigationOptions: {
-      headerTitle: 'Deck',
+      headerTitle: 'Details',
     },
-  }
+  },
 });
 
 export default class App extends React.Component {
