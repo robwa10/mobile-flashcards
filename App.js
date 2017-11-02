@@ -1,11 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';
 import { TabNavigator, StackNavigator } from 'react-navigation';
+import { Constants } from 'expo';
 import DecksList from './containers/decks-list';
 import DeckView from './containers/deck-view';
 import AddDeck from './containers/add-deck';
@@ -22,21 +23,23 @@ store.subscribe(throttle(() => {
   });
 }, 1000));
 
-const HomeScreen = () => ( <DecksList /> );
-
-const DetailsScreen = () => ( <DeckView /> );
-
-const NewDeck = () => ( <AddDeck /> );
+function UdaciStatusBar ({backgroundColor, ...props}) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
 const MainNavigator = StackNavigator({
   Home: {
-    screen: HomeScreen,
+    screen: DecksList,
     navigationOptions: {
       headerTitle: 'Home',
     }
   },
   Details: {
-    screen: DetailsScreen,
+    screen: DeckView,
     navigationOptions: {
       headerTitle: 'Details',
     },
@@ -48,6 +51,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
+          <UdaciStatusBar backgroundColor="#fff" barStyle="light-content" />
           <MainNavigator />
         </View>
       </Provider>
