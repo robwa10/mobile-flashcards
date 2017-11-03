@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 export const loadState = () => {
   try {
-    const serializedState = AsyncStorage.getItem('state');
+    const serializedState = AsyncStorage.getItem('state:key');
     if (serializedState === null) {
       return undefined;
     }
@@ -15,7 +15,7 @@ export const loadState = () => {
 export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
-    AsyncStorage.setItem('state', serializedState);
+    AsyncStorage.setItem('state:key', serializedState);
   } catch (err) {
     console.log("There was a write error.");
   }
