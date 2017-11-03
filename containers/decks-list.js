@@ -25,12 +25,13 @@ class DecksList extends Component {
 
   getCard = (title) => {
     this.props.dispatch(getDeck(title));
+    this.props.navigation.navigate('Details');
   };
 
   renderDeckCard = (item) => {
     return (
       <DeckInfoCard
-        onPress={() => this.props.navigation.navigate('Details')}
+        onPress={() => this.getCard(item.key)}
         title={item.key}
         cards={item.cards}
         containerStyles={styles.containerStyles}
