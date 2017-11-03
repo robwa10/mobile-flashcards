@@ -44,6 +44,12 @@ const MainNavigator = StackNavigator({
       headerTitle: 'Details',
     },
   },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      headerTitle: 'New Deck',
+    },
+  },
 });
 
 export default class App extends React.Component {
@@ -51,7 +57,7 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <UdaciStatusBar backgroundColor="#fff" barStyle="light-content" />
+          <UdaciStatusBar backgroundColor="#000" barStyle="light-content" />
           <MainNavigator />
         </View>
       </Provider>

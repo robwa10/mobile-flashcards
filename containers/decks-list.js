@@ -41,13 +41,17 @@ class DecksList extends Component {
   }
 
   render() {
-    // console.log('Navigation', NavigationActions);
     return (
       <View>
         <FlatList
           data={this.mapDeckTitles()}
           renderItem={({item}) => this.renderDeckCard(item)}
         />
+        <TouchableHighlight onPress={() => this.props.navigation.navigate('AddDeck')}>
+          <View style={styles.containerStyles}>
+            <Text style={styles.titleStyles}>Add a deck</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
