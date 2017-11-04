@@ -2,27 +2,29 @@ import './ReactotronConfig';
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { compose, createStore, applyMiddleware } from 'redux';
+import { persistStore, persistCombineReducers  } from 'redux-persist';
+import thunk from 'redux-thunk';
 import reducer from './reducers';
 import throttle from 'lodash/throttle';
 import { loadState, saveState } from './utils/localStorage';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { Constants } from 'expo';
+import { Constants, AppLoading } from 'expo';
 import DecksList from './containers/decks-list';
 import DeckView from './containers/deck-view';
 import AddDeck from './containers/add-deck';
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const persistedState = loadState();
-const store = createStore(
-  reducer,
-  persistedState
-);
+const store = createStore(reducer, persistedState, composeEnhancers(
+    applyMiddleware(thunk)
+  ));
 
-store.subscribe(throttle(() => {
+store.subscribe(() => {
   saveState({
     data: store.getState().data
   });
-}, 1000));
+},);
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -65,6 +67,7 @@ export default class App extends React.Component {
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {

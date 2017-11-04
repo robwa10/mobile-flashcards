@@ -3,12 +3,24 @@ import { StyleSheet,
   FlatList,
   TouchableHighlight,
   View,
-  Text } from 'react-native';
+  Text,
+  AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
+import { AppLoading } from 'expo';
 import DeckInfoCard from '../components/deck-info-card';
-import { addDeck, getDeck } from '../actions';
+import { addDeck, getDeck, loadData } from '../actions';
 
 class DecksList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isReady: false }
+  }
+
+  componentDidMount() {
+    this.props.dispatch(loadData())
+    this.setState({ isReady:true })
+  }
+
   mapDeckTitles() {
     let data = this.props.data;
     let myArray = [];
@@ -42,6 +54,9 @@ class DecksList extends Component {
   }
 
   render() {
+    if (!this.state.isReady) {
+      return <AppLoading />
+    }
     return (
       <View>
         <FlatList

@@ -1,6 +1,7 @@
 import {
   ADD_DECK,
   ADD_CARD,
+  LOAD_DATA,
 } from '../actions/action-constants';
 import { mockState } from '../utils/mock-state-data';
 
@@ -22,6 +23,8 @@ const data = (state = mockState, action) => {
       };
     case ADD_CARD:
       return addQuestion(state, action.title, action.data)
+    case LOAD_DATA:
+      return action.response.data
     default:
       return state;
   }
