@@ -9,7 +9,6 @@ class DeckView extends Component {
   }
 
   render() {
-    console.log(this.props.deck);
     return (
       <View>
         <Text>{this.props.deck.key}</Text>
