@@ -3,13 +3,12 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
-import { persistStore, persistCombineReducers  } from 'redux-persist';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import throttle from 'lodash/throttle';
-import { loadState, saveState } from './utils/localStorage';
+import { saveState } from './utils/localStorage';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { Constants, AppLoading } from 'expo';
+import { Constants } from 'expo';
 import DecksList from './containers/decks-list';
 import DeckView from './containers/deck-view';
 import AddDeck from './containers/add-deck';
@@ -33,23 +32,29 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
   )
 }
 
-const MainNavigator = StackNavigator({
+const HomeNavigator = TabNavigator({
   Home: {
     screen: DecksList,
     navigationOptions: {
       headerTitle: 'Home',
     }
   },
+  New: {
+    screen: AddDeck,
+    navigationOptions: {
+      headerTitle: 'New Deck',
+    },
+  },
+});
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: HomeNavigator,
+  },
   Details: {
     screen: DeckView,
     navigationOptions: {
       headerTitle: 'Details',
-    },
-  },
-  AddDeck: {
-    screen: AddDeck,
-    navigationOptions: {
-      headerTitle: 'New Deck',
     },
   },
 });
