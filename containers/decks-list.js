@@ -28,7 +28,7 @@ class DecksList extends Component {
       myArray.push({
         key: key,
         cards: data[key]['questions'].length,
-        questions: data.questions,
+        questions: data[key]['questions'],
       })
     }
     return myArray
