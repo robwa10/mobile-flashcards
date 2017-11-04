@@ -1,5 +1,4 @@
-import data from './data-reducer';
-import deck from './deck-reducer';
+import { data, deck } from './data-reducer';
 import { combineReducers } from 'redux';
 
 const reducer = combineReducers({

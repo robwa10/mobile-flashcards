@@ -27,7 +27,8 @@ class DecksList extends Component {
     for(let key in data) {
       myArray.push({
         key: key,
-        cards: data[key]['questions'].length
+        cards: data[key]['questions'].length,
+        questions: data.questions,
       })
     }
     return myArray
@@ -43,7 +44,7 @@ class DecksList extends Component {
   renderDeckCard = (item) => {
     return (
       <DeckInfoCard
-        onPress={() => this.getCard(item.key)}
+        onPress={() => this.getCard(item)}
         title={item.key}
         cards={item.cards}
         containerStyles={styles.containerStyles}

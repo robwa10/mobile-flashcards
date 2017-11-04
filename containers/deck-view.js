@@ -9,10 +9,11 @@ class DeckView extends Component {
   }
 
   render() {
+    console.log(this.props.deck);
     return (
       <View>
-        <Text>Title</Text>
-        <Text>Questions</Text>
+        <Text>{this.props.deck.key}</Text>
+        <Text>{this.props.deck.cards} cards</Text>
         <Button
           onPress={() => this.buttonClick()}
           title='Add Card'

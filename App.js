@@ -15,8 +15,7 @@ import DeckView from './containers/deck-view';
 import AddDeck from './containers/add-deck';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const persistedState = loadState();
-const store = createStore(reducer, persistedState, composeEnhancers(
+const store = createStore(reducer, composeEnhancers(
     applyMiddleware(thunk)
   ));
 
