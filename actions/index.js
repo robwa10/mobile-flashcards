@@ -22,10 +22,6 @@ export const getDeck = id => ({
   id
 })
 
-export const loadData = () => {
-  return function(dispatch) {
-    return AsyncStorage.getItem('state')
-    .then(response => JSON.parse(response))
-    .then(response => dispatch({type: LOAD_DATA, response}))
-  }
-}
+export const loadData = (response) => ({
+  type: LOAD_DATA, response
+})

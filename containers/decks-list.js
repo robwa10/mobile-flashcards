@@ -16,9 +16,15 @@ class DecksList extends Component {
     this.state = { isReady: false }
   }
 
+  getData() {
+    AsyncStorage.getItem('state')
+    .then(response => JSON.parse(response))
+    .then(response => this.props.dispatch(loadData(response)))
+    .then(this.setState({ isReady:true }))
+  }
+
   componentDidMount() {
-    this.props.dispatch(loadData())
-    this.setState({ isReady:true })
+    this.getData()
   }
 
   mapDeckTitles() {
@@ -29,6 +35,7 @@ class DecksList extends Component {
         key: key,
         cards: data[key]['questions'].length,
         questions: data[key]['questions'],
+        correct: 0,
       })
     }
     return myArray
