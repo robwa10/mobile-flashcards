@@ -41,8 +41,6 @@ class DecksList extends Component {
     return myArray
   }
 
-  newCard = () => (this.props.dispatch(addDeck(this.state.text)));
-
   getCard = (title) => {
     this.props.dispatch(getDeck(title));
     this.props.navigation.navigate('Details');

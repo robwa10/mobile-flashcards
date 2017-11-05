@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { addDeck } from '../actions';
+import FormInput from '../components/form-input';
 
 class AddDeck extends Component {
   constructor(props) {
@@ -18,12 +19,13 @@ class AddDeck extends Component {
   render() {
     return (
       <View style={{padding: 10}}>
-        <Text>What's you new deck's title?</Text>
-        <TextInput
-          style={{height: 40, backgroundColor: '#fff'}}
+        <FormInput
+          text="What's you new deck's title?"
           placeholder='Deck Title'
           value={this.state.text}
           onChangeText={(text) => this.setState({text})}
+          textStyles={{fontSize: 20}}
+          inputStyles={{height: 50, backgroundColor: '#fff'}}
         />
         <Button
           onPress={() => this.buttonPress()}
