@@ -14,12 +14,12 @@ class DeckView extends Component {
         <Text>{this.props.deck.key}</Text>
         <Text>{this.props.deck.cards} cards</Text>
         <Button
-          onPress={() => this.buttonClick()}
+          onPress={() => this.props.navigation.navigate('NewCard')}
           title='Add Card'
           accessibilityLabel='Add a new card.'
         />
         <Button
-          onPress={() => this.buttonClick()}
+          onPress={() => this.buttonClick('NewCard')}
           title='Start Quiz'
           accessibilityLabel='Start the quiz.'
         />
