@@ -9,7 +9,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Button,
   Animated } from 'react-native';
 
 export default class QuizCard extends Component {
@@ -27,22 +26,41 @@ export default class QuizCard extends Component {
       inputRange: [0, 180],
       outputRange: ['180deg', '360deg']
     })
+    this.frontOpacity = this.animatedValue.interpolate({
+        inputRange: [89, 90],
+        outputRange: [1, 0]
+    });
+    this.backOpacity = this.animatedValue.interpolate({
+        inputRange: [89, 90],
+        outputRange: [0, 1]
+    });
   }
+
   flipCard() {
-    Animated.spring(this.animatedValue,{
-      toValue: 180,
-      friction: 8,
-      tension: 10
-    }).start();
+    if (this.value >= 90) {
+      Animated.spring(this.animatedValue,{
+        toValue: 0,
+        friction: 8,
+        tension: 10
+      }).start();
+    } else {
+      Animated.spring(this.animatedValue,{
+        toValue: 180,
+        friction: 8,
+        tension: 10
+      }).start();
+    }
   }
 
   render() {
     const frontAnimatedStyle = {
+      opacity: this.frontOpacity,
       transform: [
         { rotateY: this.frontInterpolate}
       ]
     }
     const backAnimatedStyle = {
+      opacity: this.backOpacity,
       transform: [
         { rotateY: this.backInterpolate }
       ]
@@ -51,21 +69,23 @@ export default class QuizCard extends Component {
     return (
       <View style={styles.container}>
          <View>
-           <Animated.View style={[styles.shadow, styles.flipCard, frontAnimatedStyle]}>
-             <Text style={{fontSize: 12, marginTop: 10,}}>{correct}/{cards} Correct</Text>
-             <Text style={styles.flipText}>
-               {frontText}
-             </Text>
-             <TouchableOpacity onPress={() => this.flipCard()}>
-               <Text style={{fontSize: 20, marginBottom: 10,}}>Answer</Text>
-             </TouchableOpacity>
+           <Animated.View style={[frontAnimatedStyle, styles.flipCard]}>
+             <View>
+               <Text style={{fontSize: 12, marginTop: 10,}}>{correct}/{cards} Correct</Text>
+               <Text style={styles.flipText}>
+                 This is the front text.
+               </Text>
+             </View>
            </Animated.View>
-           <Animated.View style={[styles.shadow, backAnimatedStyle, styles.flipCard, styles.flipCardBack]}>
+           <Animated.View style={[ backAnimatedStyle, styles.flipCard, styles.flipCardBack]}>
              <Text style={styles.flipText}>
-               {backText}
+               This is the back text.
              </Text>
            </Animated.View>
          </View>
+         <TouchableOpacity onPress={() => this.flipCard()}>
+           <Text style={{fontSize: 20, marginBottom: 10,}}>Answer</Text>
+         </TouchableOpacity>
      </View>
     )
   }
@@ -81,15 +101,14 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     alignItems: 'center',
-    justifyContent: 'space-between',
-    backfaceVisibility: 'hidden',
+    justifyContent: 'center',
     backgroundColor: '#FFF',
     borderRadius: 5,
   },
   flipCardBack: {
+    backgroundColor: '#FFF',
     position: "absolute",
     top: 0,
-    backgroundColor: '#FFF',
   },
   flipText: {
     textAlign: 'center',
@@ -97,11 +116,4 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
   },
-  shadow: {
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    elevation: 1,
-  }
 });
