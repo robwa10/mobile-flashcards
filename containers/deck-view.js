@@ -19,7 +19,7 @@ class DeckView extends Component {
           accessibilityLabel='Add a new card.'
         />
         <Button
-          onPress={() => this.buttonClick('NewCard')}
+          onPress={() => this.props.navigation.navigate('Quiz')}
           title='Start Quiz'
           accessibilityLabel='Start the quiz.'
         />

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet,
   FlatList,
-  TouchableHighlight,
   View,
   Text,
   AsyncStorage } from 'react-native';

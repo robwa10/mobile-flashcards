@@ -13,6 +13,7 @@ import DecksList from './containers/decks-list';
 import DeckView from './containers/deck-view';
 import AddDeck from './containers/add-deck';
 import AddCard from './containers/add-card';
+import QuizView from './containers/quiz-view';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(
@@ -64,6 +65,12 @@ const MainNavigator = StackNavigator({
       headerTitle: 'New Card',
     },
   },
+  Quiz: {
+    screen: QuizView,
+    navigationOptions: {
+      headerTitle: 'Quiz',
+    }
+  }
 });
 
 export default class App extends React.Component {
