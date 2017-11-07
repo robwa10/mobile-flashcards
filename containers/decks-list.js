@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import DeckInfoCard from '../components/deck-info-card';
 import { addDeck, getDeck, loadData } from '../actions';
+import { blue, mainText, secondaryText } from '../utils/colors';
 
 class DecksList extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ export default connect(mapStateToProps)(DecksList);
 
 const styles = StyleSheet.create({
   containerStyles: {
-    backgroundColor: '#FF8A65',
+    backgroundColor: '#FFF',
     paddingVertical: 30,
     marginHorizontal: 5,
     marginVertical: 2,
@@ -90,11 +91,11 @@ const styles = StyleSheet.create({
   titleStyles: {
     textAlign: 'center',
     fontSize: 24,
-    color: '#212121',
+    color: mainText,
   },
   textStyles: {
     textAlign: 'center',
     fontSize: 18,
-    color: '#212121',
+    color: secondaryText,
   }
 });

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { addDeck } from '../actions';
 import FormInput from '../components/form-input';
+import { blue, mainText } from '../utils/colors';
 
 class AddDeck extends Component {
   constructor(props) {
@@ -18,23 +19,31 @@ class AddDeck extends Component {
 
   render() {
     return (
-      <View style={{padding: 10}}>
+      <View style={styles.container}>
         <FormInput
+          containerStyles={{marginBottom: 10}}
           text="What's you new deck's title?"
           placeholder='Deck Title'
           value={this.state.text}
           onChangeText={(text) => this.setState({text})}
-          textStyles={{fontSize: 20}}
-          inputStyles={{height: 50, backgroundColor: '#fff'}}
+          textStyles={{fontSize: 20, marginBottom: 20, alignSelf: 'center'}}
+          inputStyles={{fontSize: 20, height: 50, backgroundColor: '#fff'}}
         />
-        <Button
-          onPress={() => this.buttonPress()}
-          title='Submit'
-          accessibilityLabel='Submit deck'
-        />
+        <TouchableOpacity style={{padding: 10, marginVertical: 10, }} onPress={() => this.buttonPress()}>
+          <Text style={{fontSize: 32, color: blue, textAlign: 'center'}}>Submit</Text>
+        </TouchableOpacity>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF',
+    justifyContent: 'center',
+    paddingHorizontal: 15,
+  },
+});
 
 export default connect()(AddDeck);
