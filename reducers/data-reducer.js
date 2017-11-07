@@ -17,11 +17,11 @@ function addQuestion(state, title, data) {
       [title]: {
         ...state[title],
           questions: [...state[title].questions, data]
-    }
-  }
+        }
+      }
 }
 
-export const data = (state = mockState, action) => {
+export const data = (state = {}, action) => {
   switch (action.type) {
     case ADD_DECK:
       return {

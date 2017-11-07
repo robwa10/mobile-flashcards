@@ -40,7 +40,9 @@ class AddCard extends Component {
           textStyles={styles.text}
           inputStyles={styles.input}
         />
-        <TouchableOpacity style={{padding: 10, marginVertical: 10, }} onPress={() => this.buttonPress()}>
+        <TouchableOpacity
+          style={{padding: 10, marginVertical: 10, }}
+          onPress={() => this.buttonPress()}>
           <Text style={{fontSize: 32, color: blue, textAlign: 'center'}}>Submit</Text>
         </TouchableOpacity>
       </View>

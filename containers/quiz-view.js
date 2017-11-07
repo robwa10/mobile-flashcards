@@ -3,8 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Button,
-  TouchableOpacity,
   Easing,
   Animated } from 'react-native';
 import { connect } from 'react-redux';
@@ -23,14 +21,13 @@ class QuizView extends Component {
       viewResult: false,
     }
   };
-  
+
   nextCard = (value) => {
-    let totalCards = (this.props.deck.cards - 1);
-    let currentCard = this.props.deck.currentCard;
+    let totalCards = (this.props.cards - 1);
+    let currentCard = this.props.currentCard;
     if (currentCard < totalCards) {
-      this.props.dispatch(answer(value)); // Adds 1 to currentCard and value to correct
+      this.props.dispatch(answer(value)); // Adds 1 to currentCard and adds value to correct
     } else {
-      //
       this.setState({viewResult: !this.state.viewResult})
       this.props.dispatch(score(value)) // Adds value to correct
     }
@@ -42,6 +39,7 @@ class QuizView extends Component {
     this.setState({viewResult: !this.state.viewResult})
   }
 
+  // Future improvement - change opacity when rotation at 90
   flip = () => {
     this.setState({
       isFlipped: !this.state.isFlipped,
@@ -59,7 +57,7 @@ class QuizView extends Component {
   }
 
   finalScore = () => {
-    const score = (this.props.deck.correct/this.props.deck.cards) * 100;
+    const score = (this.props.correct/this.props.cards) * 100;
     return (
       <QuizCardFront
         frontOpacity={this.state.frontOpacity}
@@ -73,8 +71,8 @@ class QuizView extends Component {
   renderFront = () => (
     <QuizCardFront
       frontOpacity={this.state.frontOpacity}
-      topText={`${this.props.deck.correct}/${this.props.deck.cards} Correct`}
-      middleText={this.props.deck.questions[this.props.deck.currentCard]['question']}
+      topText={`${this.props.correct}/${this.props.cards} Correct`}
+      middleText={this.props.questions[this.props.currentCard]['question']}
       onPress={this.flip}
       buttonText='See Answer'/>
     );
@@ -82,7 +80,7 @@ class QuizView extends Component {
   renderBack = () => (
     <QuizCardBack
       backOpacity={this.state.backOpacity}
-      backText={this.props.deck.questions[this.props.deck.currentCard]['answer']}
+      backText={this.props.questions[this.props.currentCard]['answer']}
       onCorrect={() => this.nextCard(1)}
       onIncorrect={() => this.nextCard(0)}/>
   );
@@ -106,7 +104,10 @@ class QuizView extends Component {
 };
 
 const mapStateToProps = ({ deck }) => ({
-  deck,
+  cards: deck.cards,
+  correct: deck.correct,
+  currentCard: deck.currentCard,
+  questions: deck.questions,
 });
 
 export default connect(mapStateToProps)(QuizView)

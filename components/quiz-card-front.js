@@ -10,8 +10,10 @@ export default QuizFront = ({ frontOpacity, topText, middleText, onPress, button
   <View style={[styles.container, {opacity: frontOpacity}]}>
     <Text style={{fontSize: 16, marginTop: 10, color: secondaryText}}>{topText}</Text>
     <Text style={{fontSize: 32, color: mainText}}>{middleText}</Text>
-    <TouchableOpacity style={{padding: 10, marginTop: 20,}} onPress={onPress}>
-      <Text style={{fontSize: 32, color: blue}}>{buttonText}</Text>
+    <TouchableOpacity
+      style={{padding: 10, marginTop: 20,}}
+      onPress={onPress}>
+        <Text style={{fontSize: 32, color: blue}}>{buttonText}</Text>
     </TouchableOpacity>
   </View>
 );

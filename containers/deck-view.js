@@ -14,12 +14,16 @@ class DeckView extends Component {
           <Text style={{fontSize: 20, marginTop: 10, color: secondaryText}}>{this.props.deck.cards} cards</Text>
         </View>
         <View style={{flex: 1, justifyContent: 'center'}}>
-          <TouchableOpacity style={{backgroundColor: blue, borderRadius: 2, padding: 8, marginVertical: 8, }} onPress={() => this.props.navigation.navigate('NewCard')}>
-            <Text style={{fontSize: 32, color: '#FFF', textAlign: 'center'}}>Add Card</Text>
+          <TouchableOpacity
+            style={{backgroundColor: blue, borderRadius: 2, padding: 8, marginVertical: 8, }}
+            onPress={() => this.props.navigation.navigate('NewCard')}>
+              <Text style={{fontSize: 32, color: '#FFF', textAlign: 'center'}}>Add Card</Text>
           </TouchableOpacity>
           {this.props.deck.cards === 0
             ? null
-            : <TouchableOpacity style={{padding: 10, marginVertical: 10, }} onPress={() => this.props.navigation.navigate('Quiz')}>
+            : <TouchableOpacity
+            style={{padding: 10, marginVertical: 10, }}
+            onPress={() => this.props.navigation.navigate('Quiz')}>
               <Text style={{fontSize: 32, color: blue, textAlign: 'center'}}>Start Quiz</Text>
             </TouchableOpacity>
           }

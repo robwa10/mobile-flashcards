@@ -29,7 +29,9 @@ class AddDeck extends Component {
           textStyles={{fontSize: 20, marginBottom: 20, alignSelf: 'center'}}
           inputStyles={{fontSize: 20, height: 50, backgroundColor: '#fff'}}
         />
-        <TouchableOpacity style={{padding: 10, marginVertical: 10, }} onPress={() => this.buttonPress()}>
+        <TouchableOpacity
+          style={{padding: 10, marginVertical: 10, }}
+          onPress={() => this.buttonPress()}>
           <Text style={{fontSize: 32, color: blue, textAlign: 'center'}}>Submit</Text>
         </TouchableOpacity>
       </View>

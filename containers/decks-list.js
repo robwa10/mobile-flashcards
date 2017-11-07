@@ -20,7 +20,7 @@ class DecksList extends Component {
   getData() {
     AsyncStorage.getItem('state')
     .then(response => JSON.parse(response))
-    .then(response => this.props.dispatch(loadData(response)))
+    .then(response => (response !== null ? this.props.dispatch(loadData(response)) : console.log('Null Response')))
     .then(this.setState({ isReady:true }))
   }
 

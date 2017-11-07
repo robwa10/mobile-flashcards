@@ -15,7 +15,6 @@ export default FormInput = ({
       style={inputStyles}
       placeholder={placeholder}
       value={value}
-      onChangeText={onChangeText}
-    />
+      onChangeText={onChangeText}/>
   </View>
 )

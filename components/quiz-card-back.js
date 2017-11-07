@@ -12,11 +12,15 @@ export default QuizBack = ({ backOpacity, backText, onCorrect, onIncorrect }) =>
       <Text style={{textAlign: 'center', fontSize: 32, color: mainText}}>{backText}</Text>
     </View>
     <View style={{flex: 1, justifyContent: 'center'}}>
-      <TouchableOpacity style={{backgroundColor: blue, borderRadius: 2, padding: 8, marginVertical: 8, }} onPress={onCorrect}>
-        <Text style={{fontSize: 32, color: '#FFF', textAlign: 'center'}}>Correct</Text>
+      <TouchableOpacity
+        style={{backgroundColor: blue, borderRadius: 2, padding: 8, marginVertical: 8, }}
+        onPress={onCorrect}>
+          <Text style={{fontSize: 32, color: '#FFF', textAlign: 'center'}}>Correct</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{padding: 10, marginVertical: 10, }} onPress={onIncorrect}>
-        <Text style={{fontSize: 32, color: blue, textAlign: 'center'}}>Incorrect</Text>
+      <TouchableOpacity
+        style={{padding: 10, marginVertical: 10, }}
+        onPress={onIncorrect}>
+          <Text style={{fontSize: 32, color: blue, textAlign: 'center'}}>Incorrect</Text>
       </TouchableOpacity>
     </View>
   </View>
