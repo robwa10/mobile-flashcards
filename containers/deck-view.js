@@ -5,9 +5,6 @@ import { NavigationActions } from 'react-navigation'
 import { blue, mainText, secondaryText } from '../utils/colors';
 
 class DeckView extends Component {
-  buttonClick() {
-    console.log('I pressed a button');
-  }
 
   render() {
     return (
