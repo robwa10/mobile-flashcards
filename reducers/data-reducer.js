@@ -3,6 +3,8 @@ import {
   ADD_CARD,
   LOAD_DATA,
   GET_DECK,
+  CORRECT,
+  INCORRECT,
 } from '../actions/action-constants';
 import { mockState } from '../utils/mock-state-data';
 
@@ -35,6 +37,16 @@ export const deck = (state = {}, action) => {
   switch (action.type) {
     case GET_DECK:
       return action.id
+    case CORRECT:
+      console.log('CORRECT');
+      return {
+        ...state,
+        correct: state['correct']++,
+        currentCard: state['currentCard']++,
+      }
+    case INCORRECT:
+      console.log('INCORRECT');
+      return { ...state, currentCard: state['currentCard'] + 1}
     default:
       return state;
   }

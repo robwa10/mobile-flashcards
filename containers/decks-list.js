@@ -35,6 +35,7 @@ class DecksList extends Component {
         cards: data[key]['questions'].length,
         questions: data[key]['questions'],
         correct: 0,
+        currentCard: 0,
       })
     }
     return myArray

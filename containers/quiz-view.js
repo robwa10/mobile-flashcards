@@ -8,41 +8,45 @@ import {
   Easing,
   Animated } from 'react-native';
 import { connect } from 'react-redux';
+import { correctAnswer, inCorrectAnswer } from '../actions';
 import FlipView from 'react-native-flip-view';
-import QuizFront from '../components/quiz-front';
-import QuizBack from '../components/quiz-back';
+import QuizCardFront from '../components/quiz-card-front';
+import QuizCardBack from '../components/quiz-card-back';
 
 class QuizView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      questionView: true,
-      currentCard: 0,
-      correct: 0,
       isFlipped: false,
       frontOpacity: 1,
       backOpacity: 0,
     }
   };
 
-  nextQuestion = () => {
-    if (this.state.currentCard < this.props.deck.cards) {
-      this.setState({ currentCard: this.state.currentCard++ });
-      console.log('currentCard', this.state.currentCard);
-      this.flipBack();
-    } else {
-      console.log('Route Home');
-      this.props.navigation.navigate('Home');
-    }
-  };
+  _correct = () => {
+    this.props.dispatch(correctAnswer())
+  }
 
-  correctAnswer = () => {
-    this.nextQuestion();
-    this.setState({
-      correct: this.state.correct++
-    })
-    console.log('Correct', this.state.correct);
-  };
+  _incorrect = () => {
+    this.props.dispatch(inCorrectAnswer())
+  }
+
+  componentWillReceiveProps(nextProp) {
+    if (nextProp.deck.currentCard !== this.props.deck.currentCard) {
+      if (nextProp.deck.currentCard < this.props.deck.cards) {
+        this.props.navigation.navigate('Home');
+      }
+      console.log('currentCard', this.props.deck.currentCard);
+      console.log('nextProp', nextProp.deck.currentCard);
+      if (this.state.isFlipped === true) {
+        this.setState({
+          isFlipped: !this.state.isFlipped,
+          frontOpacity: 1,
+          backOpacity: 0,
+        })
+      }
+    }
+  }
 
   flip = () => {
     this.setState({
@@ -52,32 +56,28 @@ class QuizView extends Component {
     });
   };
 
-  flipBack = () => {
-    this.setState({
-      isFlipped: !this.state.isFlipped,
-      frontOpacity: 1,
-      backOpacity: 0,
-    });
-  };
-
   renderFront = () => (
-    <QuizFront
+    <QuizCardFront
       frontOpacity={this.state.frontOpacity}
-      correct={this.state.correct}
+      correct={this.props.deck.correct}
       cards={this.props.deck.cards}
-      frontText={this.props.deck.questions[this.state.currentCard]['question']}
+      frontText={this.props.deck.questions[this.props.deck.currentCard]['question']}
       onPress={this.flip}/>
   );
 
   renderBack = () => (
-    <QuizBack
+    <QuizCardBack
       backOpacity={this.state.backOpacity}
-      backText={this.props.deck.questions[this.state.currentCard]['answer']}
-      onCorrect={this.correctAnswer}
-      onIncorrect={this.nextQuestion}/>
+      backText={this.props.deck.questions[this.props.deck.currentCard]['answer']}
+      onCorrect={this._correct}
+      onIncorrect={this._incorrect}/>
   );
 
   render() {
+    console.log('I rendered');
+    console.log('Score on render', this.props.deck.correct);
+    console.log('Card on render', this.props.deck.currentCard);
+    console.log('BREAK');
     return (
       <FlipView
         style={{flex: 1}}

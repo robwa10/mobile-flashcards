@@ -3,6 +3,8 @@ import {
   ADD_CARD,
   GET_DECK,
   LOAD_DATA,
+  CORRECT,
+  INCORRECT,
 } from './action-constants';
 import { AsyncStorage } from 'react-native';
 
@@ -24,4 +26,12 @@ export const getDeck = id => ({
 
 export const loadData = (response) => ({
   type: LOAD_DATA, response
+})
+
+export const correctAnswer = () => ({
+  type: CORRECT,
+})
+
+export const inCorrectAnswer = () => ({
+  type: INCORRECT,
 })
