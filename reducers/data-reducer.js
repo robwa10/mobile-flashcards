@@ -3,8 +3,9 @@ import {
   ADD_CARD,
   LOAD_DATA,
   GET_DECK,
-  CORRECT,
-  INCORRECT,
+  ANSWER,
+  SCORE,
+  RESET_QUIZ,
 } from '../actions/action-constants';
 import { mockState } from '../utils/mock-state-data';
 
@@ -37,16 +38,23 @@ export const deck = (state = {}, action) => {
   switch (action.type) {
     case GET_DECK:
       return action.id
-    case CORRECT:
-      console.log('CORRECT');
+    case ANSWER:
       return {
         ...state,
-        correct: state['correct']++,
-        currentCard: state['currentCard']++,
+        currentCard: state['currentCard'] + 1,
+        correct: state['correct'] + action.value,
       }
-    case INCORRECT:
-      console.log('INCORRECT');
-      return { ...state, currentCard: state['currentCard'] + 1}
+    case SCORE:
+      return {
+        ...state,
+        correct: state['correct'] + action.value,
+      }
+    case RESET_QUIZ:
+      return {
+        ...state,
+        currentCard: 0,
+        correct: 0,
+      }
     default:
       return state;
   }

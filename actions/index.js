@@ -3,8 +3,9 @@ import {
   ADD_CARD,
   GET_DECK,
   LOAD_DATA,
-  CORRECT,
-  INCORRECT,
+  ANSWER,
+  SCORE,
+  RESET_QUIZ,
 } from './action-constants';
 import { AsyncStorage } from 'react-native';
 
@@ -28,10 +29,16 @@ export const loadData = (response) => ({
   type: LOAD_DATA, response
 })
 
-export const correctAnswer = () => ({
-  type: CORRECT,
+export const answer = (value) => ({
+  type: ANSWER,
+  value,
 })
 
-export const inCorrectAnswer = () => ({
-  type: INCORRECT,
+export const score = (value) => ({
+  type: SCORE,
+  value,
+})
+
+export const resetQuiz = () => ({
+  type: RESET_QUIZ,
 })
