@@ -4647,6 +4647,16 @@ react-native-elements@^0.17.0:
     react-native-side-menu "^1.0.2"
     react-native-tab-navigator "^0.3.4"
 
+react-native-flip-card@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-flip-card/-/react-native-flip-card-3.5.2.tgz#6563f4a6d95b999c21e82deec9b2f502175847d6"
+  dependencies:
+    prop-types "^15.5.10"
+
+react-native-flip-view@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-flip-view/-/react-native-flip-view-1.0.5.tgz#6f18ac4da021d0672c8531676c8cb08ef4f36915"
+
 react-native-gesture-handler@1.0.0-alpha.22:
   version "1.0.0-alpha.22"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.0.0-alpha.22.tgz#96e5ae08b26a9e99d115f6e16f63d7487ef995fc"
@@ -4940,6 +4950,10 @@ redux-logger@^2.7.4:
 redux-persist@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.2.2.tgz#bf932164008e275d9e1fec38909a94168761e818"
+
+redux-thunk@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
 redux@^3.6.0, redux@^3.7.2:
   version "3.7.2"
