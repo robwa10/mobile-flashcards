@@ -3,6 +3,7 @@ import {
   ADD_CARD,
   GET_DECK,
   LOAD_DATA,
+  DELETE_DECK,
   ANSWER,
   SCORE,
   RESET_QUIZ,
@@ -26,7 +27,12 @@ export const getDeck = id => ({
 })
 
 export const loadData = (response) => ({
-  type: LOAD_DATA, response
+  type: LOAD_DATA,
+  response
+})
+
+export const deleteDeck = (key) => ({
+  type: DELETE_DECK,
 })
 
 export const answer = (value) => ({

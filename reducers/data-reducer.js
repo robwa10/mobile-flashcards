@@ -3,11 +3,13 @@ import {
   ADD_CARD,
   LOAD_DATA,
   GET_DECK,
+  DELETE_DECK,
   ANSWER,
   SCORE,
   RESET_QUIZ,
 } from '../actions/action-constants';
 import { mockState } from '../utils/mock-state-data';
+import { omit } from 'lodash';
 
 function addQuestion(state, title, data) {
   return {
@@ -29,6 +31,11 @@ export const data = (state = mockState, action) => {
       return addQuestion(state, action.title, action.data)
     case LOAD_DATA:
       return action.response.data
+    case DELETE_DECK:
+      return {
+        ...state,
+        [action.key]: omit(state[action.key])
+      }
     default:
       return state;
   }

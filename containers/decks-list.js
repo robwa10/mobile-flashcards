@@ -3,11 +3,12 @@ import { StyleSheet,
   FlatList,
   View,
   Text,
+  Alert,
   AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import DeckInfoCard from '../components/deck-info-card';
-import { addDeck, getDeck, loadData } from '../actions';
+import { addDeck, getDeck, loadData, deleteDeck } from '../actions';
 import { blue, mainText, secondaryText } from '../utils/colors';
 
 class DecksList extends Component {
