@@ -26,7 +26,7 @@ export const setLocalNotification = () => {
   .then((data) => {
     if (data === null) {
       Permissions.askAsync(Permissions.NOTIFICATIONS)
-      .then(({ status })) => {
+      .then(({ status }) => {
         if (status === 'granted') {
           Notifications.cancelAllScheduledNotificationsAsync()
 
@@ -35,7 +35,7 @@ export const setLocalNotification = () => {
           tomorrow.setHours(20)
           tomorrow.setMinutes(0)
 
-          Notifications.sccheduleLocalNotificationAsync(
+          Notifications.scheduleLocalNotificationAsync(
             createNotification(),
             {
               time: tomorrow,
@@ -45,7 +45,7 @@ export const setLocalNotification = () => {
 
           AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
         }
-      }
+      })
     }
   })
 }

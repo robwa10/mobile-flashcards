@@ -27,8 +27,8 @@ class DecksList extends Component {
 
   componentDidMount() {
     this.getData()
-    clearLocalNotification
-    .then(setLocalNotification)
+    clearLocalNotification()
+    .then(setLocalNotification())
   }
 
   mapDeckTitles() {
