@@ -56,6 +56,15 @@ class QuizView extends Component {
     })
   }
 
+  cardsLeft = () => {
+    let count = this.props.cards - (this.props.currentCard + 1);
+    if (count == 1) {
+      return `${count} card left`
+    } else {
+      return `${count} cards left`
+    }
+  }
+
   finalScore = () => {
     const score = Math.floor((this.props.correct/this.props.cards) * 100);
     return (
@@ -80,6 +89,7 @@ class QuizView extends Component {
   renderBack = () => (
     <QuizCardBack
       backOpacity={this.state.backOpacity}
+      topText={this.cardsLeft()}
       backText={this.props.questions[this.props.currentCard]['answer']}
       onCorrect={() => this.nextCard(1)}
       onIncorrect={() => this.nextCard(0)}/>

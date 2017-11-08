@@ -4,16 +4,15 @@ import {
   View,
   Text,
   TouchableOpacity, } from 'react-native';
-import { blue, mainText, } from '../utils/colors';
+import { blue, mainText, secondaryText, } from '../utils/colors';
 import BlueButton from '../components/blue-button';
 import TextButton from '../components/text-button';
 
-export default QuizBack = ({ backOpacity, backText, onCorrect, onIncorrect }) => (
+export default QuizBack = ({ backOpacity, topText, backText, onCorrect, onIncorrect }) => (
   <View style={[styles.container, {opacity: backOpacity}]}>
-    <View style={styles.titleContainer}>
-      <Text style={styles.text}>{backText}</Text>
-    </View>
-    <View style={{flex: 1, justifyContent: 'center'}}>
+    <Text style={styles.scoreText}>{topText}</Text>
+    <Text style={styles.text}>{backText}</Text>
+    <View style={{justifyContent: 'center'}}>
       <BlueButton
         onPress={onCorrect}
         buttonText='Correct'
@@ -30,13 +29,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   titleContainer: {
     flex: 2,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  scoreText: {
+    fontSize: 16,
+    marginTop: 10,
+    color: secondaryText
   },
   text: {
     textAlign: 'center',
