@@ -11,7 +11,7 @@ import { TabNavigator, StackNavigator, } from 'react-navigation';
 import { Constants } from 'expo';
 import { blue } from './utils/colors';
 import DecksList from './containers/decks-list';
-import DeckView from './containers/deck-view';
+import DeckView from './components/deck-view';
 import AddDeck from './containers/add-deck';
 import AddCard from './containers/add-card';
 import QuizView from './containers/quiz-view';
