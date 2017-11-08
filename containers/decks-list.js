@@ -7,6 +7,7 @@ import { StyleSheet,
   AsyncStorage, } from 'react-native';
 import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 import DeckInfoCard from '../components/deck-info-card';
 import { addDeck, getDeck, loadData, deleteDeck, } from '../actions';
 import { blue, mainText, secondaryText, } from '../utils/colors';
@@ -26,6 +27,8 @@ class DecksList extends Component {
 
   componentDidMount() {
     this.getData()
+    clearLocalNotification
+    .then(setLocalNotification)
   }
 
   mapDeckTitles() {
