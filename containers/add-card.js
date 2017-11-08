@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput, } from 'react-native';
+import { StyleSheet, View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { addCardToDeck } from '../actions';
 import FormInput from '../components/form-input';
@@ -22,7 +22,7 @@ class AddCard extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior='padding'>
         <FormInput
           containerStyles={{marginBottom: 10}}
           text='Question'
@@ -45,7 +45,7 @@ class AddCard extends Component {
             onPress={() => this.buttonPress()}
             buttonText='Submit'
         />
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
