@@ -4,12 +4,12 @@ import { StyleSheet,
   View,
   Text,
   Alert,
-  AsyncStorage } from 'react-native';
+  AsyncStorage, } from 'react-native';
 import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import DeckInfoCard from '../components/deck-info-card';
-import { addDeck, getDeck, loadData, deleteDeck } from '../actions';
-import { blue, mainText, secondaryText } from '../utils/colors';
+import { addDeck, getDeck, loadData, deleteDeck, } from '../actions';
+import { blue, mainText, secondaryText, } from '../utils/colors';
 
 class DecksList extends Component {
   constructor(props) {
@@ -43,9 +43,9 @@ class DecksList extends Component {
     return myArray
   }
 
-  getCard = (title) => {
-    this.props.dispatch(getDeck(title));
-    this.props.navigation.navigate('Details');
+  getCard = (item) => {
+    this.props.dispatch(getDeck(item));
+    this.props.navigation.navigate('Details', {item});
   };
 
   renderDeckCard = (item) => {

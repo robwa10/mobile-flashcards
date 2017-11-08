@@ -1,14 +1,15 @@
 import './ReactotronConfig';
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, } from 'react-native';
 import { Provider } from 'react-redux';
-import { compose, createStore, applyMiddleware } from 'redux';
+import { compose, createStore, applyMiddleware, } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import throttle from 'lodash/throttle';
 import { saveState } from './utils/localStorage';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, } from 'react-navigation';
 import { Constants } from 'expo';
+import { blue } from './utils/colors';
 import DecksList from './containers/decks-list';
 import DeckView from './containers/deck-view';
 import AddDeck from './containers/add-deck';
@@ -73,19 +74,14 @@ const MainNavigator = StackNavigator({
   }
 });
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <UdaciStatusBar backgroundColor="#000" barStyle="light-content" />
-          <MainNavigator />
-        </View>
-      </Provider>
-    );
-  }
-}
-
+export default App = () => (
+  <Provider store={store}>
+    <View style={styles.container}>
+      <UdaciStatusBar backgroundColor={blue} barStyle="light-content" />
+      <MainNavigator />
+    </View>
+  </Provider>
+)
 
 const styles = StyleSheet.create({
   container: {

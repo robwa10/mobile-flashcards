@@ -57,7 +57,7 @@ class QuizView extends Component {
   }
 
   finalScore = () => {
-    const score = (this.props.correct/this.props.cards) * 100;
+    const score = Math.floor((this.props.correct/this.props.cards) * 100);
     return (
       <QuizCardFront
         frontOpacity={this.state.frontOpacity}
@@ -111,4 +111,3 @@ const mapStateToProps = ({ deck }) => ({
 });
 
 export default connect(mapStateToProps)(QuizView)
-

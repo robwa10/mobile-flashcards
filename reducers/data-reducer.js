@@ -45,6 +45,11 @@ export const deck = (state = {}, action) => {
   switch (action.type) {
     case GET_DECK:
       return action.id
+    case ADD_CARD:
+      return {
+        ...state,
+        questions: [...state, data]
+      }
     case ANSWER:
       return {
         ...state,

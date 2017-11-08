@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput, } from 'react-native';
 import { connect } from 'react-redux';
 import { addCardToDeck } from '../actions';
 import FormInput from '../components/form-input';
-import { blue, mainText } from '../utils/colors';
+import { blue, mainText, } from '../utils/colors';
+import TextButton from '../components/text-button';
 
 class AddCard extends Component {
   constructor(props) {
@@ -17,13 +18,13 @@ class AddCard extends Component {
   buttonPress = () => {
     this.setState({ question: '', answer: '', });
     this.props.dispatch(addCardToDeck(this.props.deck.key, this.state));
-}
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <FormInput
-          containerStyles={{marginBottom: 20}}
+          containerStyles={{marginBottom: 10}}
           text='Question'
           placeholder='Why did the chicken cross the road?'
           value={this.state.question}
@@ -40,11 +41,10 @@ class AddCard extends Component {
           textStyles={styles.text}
           inputStyles={styles.input}
         />
-        <TouchableOpacity
-          style={{padding: 10, marginVertical: 10, }}
-          onPress={() => this.buttonPress()}>
-          <Text style={{fontSize: 32, color: blue, textAlign: 'center'}}>Submit</Text>
-        </TouchableOpacity>
+        <TextButton
+            onPress={() => this.buttonPress()}
+            buttonText='Submit'
+        />
       </View>
     )
   }

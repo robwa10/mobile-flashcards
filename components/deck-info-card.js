@@ -12,7 +12,7 @@ export default DeckInfoCard = (
       <TouchableHighlight onPress={onPress}>
         <View style={containerStyles}>
           <Text style={titleStyles}>{title}</Text>
-          <Text style={textStyles}>{`${cards} cards`}</Text>
+          <Text style={textStyles}>{cards} {cards == 1 ? 'card' : 'cards'}</Text>
         </View>
       </TouchableHighlight>
   )
