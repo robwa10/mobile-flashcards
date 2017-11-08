@@ -56,6 +56,9 @@ Results view displays:
 * Score in a percentage  
 * Option to retake quiz  
 
+#### Notifications  
+User receives a local notification at 8pm if they haven't opened the app that day.
+
 ## Future Features  
 Items to include in future refactors are:  
 * Changing quiz card opacity based off of card rotation degrees.  
