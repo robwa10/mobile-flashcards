@@ -9,9 +9,9 @@ import throttle from 'lodash/throttle';
 import { saveState } from './utils/localStorage';
 import { TabNavigator, StackNavigator, } from 'react-navigation';
 import { Constants } from 'expo';
-import { blue } from './utils/colors';
+import { blue } from './utils/styles';
 import DecksList from './containers/decks-list';
-import DeckView from './components/deck-view';
+import DeckView from './containers/deck-view';
 import AddDeck from './containers/add-deck';
 import AddCard from './containers/add-card';
 import QuizView from './containers/quiz-view';
@@ -70,6 +70,7 @@ const MainNavigator = StackNavigator({
     screen: QuizView,
     navigationOptions: {
       headerTitle: 'Quiz',
+      headerBackTitle: null,
     }
   }
 });

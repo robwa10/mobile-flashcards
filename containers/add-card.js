@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 import { addCardToDeck } from '../actions';
 import FormInput from '../components/form-input';
-import { blue, mainText, } from '../utils/colors';
+import { blue, mainText, } from '../utils/styles';
 import TextButton from '../components/text-button';
 
 class AddCard extends Component {
@@ -15,9 +16,24 @@ class AddCard extends Component {
     }
   }
 
+
   buttonPress = () => {
+    let title = this.props.navigation.state.params.title;
+    const navigateAction = NavigationActions.navigate({
+      routeName: 'Details',
+      params: {title},
+      action: NavigationActions.reset({
+        index: 1,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Home'}),
+          NavigationActions.navigate({ routeName: 'Details'})
+        ]
+      })
+    })
+
+    this.props.dispatch(addCardToDeck(title, this.state));
     this.setState({ question: '', answer: '', });
-    this.props.dispatch(addCardToDeck(this.props.deck.key, this.state));
+    this.props.navigation.dispatch(navigateAction);
   }
 
   render() {

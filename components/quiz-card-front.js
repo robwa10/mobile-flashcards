@@ -4,7 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity, } from 'react-native';
-import { blue, mainText, secondaryText, } from '../utils/colors';
+import { blue, mainText, secondaryText, } from '../utils/styles';
 import BlueButton from '../components/blue-button';
 
 export default QuizFront = ({ frontOpacity, topText, middleText, onPress, buttonText }) => (

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, TextInput, KeyboardAvoidingView, } from 'react-
 import { connect } from 'react-redux';
 import { addDeck } from '../actions';
 import FormInput from '../components/form-input';
-import { blue, mainText } from '../utils/colors';
+import { blue, mainText } from '../utils/styles';
 import TextButton from '../components/text-button';
 
 class AddDeck extends Component {
@@ -13,22 +13,23 @@ class AddDeck extends Component {
   }
 
   buttonPress = () => {
+    let item = this.state.text
+    this.props.dispatch(addDeck(item));
+    this.props.navigation.navigate('Details', {item});
     this.setState({ text: '' })
-    this.props.dispatch(addDeck(this.state.text));
-    this.props.navigation.goBack()
-}
+  }
 
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
         <FormInput
-          containerStyles={{marginBottom: 10}}
+          containerStyles={styles.containerStyles}
           text="What's your new deck's title?"
           placeholder='Deck Title'
           value={this.state.text}
           onChangeText={(text) => this.setState({text})}
-          textStyles={{fontSize: 20, marginBottom: 20, alignSelf: 'center'}}
-          inputStyles={{fontSize: 20, height: 50, backgroundColor: '#fff', textAlign: 'center'}}
+          textStyles={styles.textStyles}
+          inputStyles={styles.inputStyles}
         />
         <TextButton
           onPress={() => this.buttonPress()}
@@ -39,6 +40,8 @@ class AddDeck extends Component {
   }
 }
 
+export default connect()(AddDeck);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -46,6 +49,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 15,
   },
+  containerStyles: {marginBottom: 10},
+  textStyles: {
+    fontSize: 20,
+    marginBottom: 20,
+    alignSelf: 'center'
+  },
+  inputStyles: {
+    fontSize: 20,
+    height: 50,
+    backgroundColor: '#fff',
+    textAlign: 'center'
+  },
 });
-
-export default connect()(AddDeck);

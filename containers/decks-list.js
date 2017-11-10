@@ -10,7 +10,7 @@ import { AppLoading } from 'expo';
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 import DeckInfoCard from '../components/deck-info-card';
 import { addDeck, getDeck, loadData, deleteDeck, } from '../actions';
-import { blue, mainText, secondaryText, } from '../utils/colors';
+import { blue, mainText, secondaryText, } from '../utils/styles';
 
 class DecksList extends Component {
   constructor(props) {
@@ -38,23 +38,19 @@ class DecksList extends Component {
       myArray.push({
         key: key,
         cards: data[key]['questions'].length,
-        questions: data[key]['questions'],
-        correct: 0,
-        currentCard: 0,
       })
     }
     return myArray
   }
 
-  getCard = (item) => {
-    this.props.dispatch(getDeck(item));
-    this.props.navigation.navigate('Details', {item});
+  getCard = (title) => {
+    this.props.navigation.navigate('Details', {title});
   };
 
   renderDeckCard = (item) => {
     return (
       <DeckInfoCard
-        onPress={() => this.getCard(item)}
+        onPress={() => this.getCard(item.key)}
         title={item.key}
         cards={item.cards}
         containerStyles={styles.containerStyles}

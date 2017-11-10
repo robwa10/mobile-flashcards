@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { blue } from '../utils/colors';
+import { blue } from '../utils/styles';
 
 export default BlueButton = ({ onPress, buttonText }) => (
   <TouchableOpacity
