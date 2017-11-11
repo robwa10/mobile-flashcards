@@ -107,8 +107,8 @@ class QuizView extends Component {
         mainText={`You got ${score}% correct.`}
         blueButtonPress={this.tryAgain}
         blueButtonText='Retake Quiz'
-        textButtonPress={() => this.props.navigation.dispatch(resetAction)}
-        textButtonText='Deck List'
+        textButtonPress={() => this.props.navigation.goBack()}
+        textButtonText='Deck'
       />
     )
   };
