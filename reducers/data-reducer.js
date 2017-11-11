@@ -12,13 +12,15 @@ import { mockState } from '../utils/mock-state-data';
 import { omit } from 'lodash';
 
 function addQuestion(state, title, data) {
+  let myArray = state[title]['questions'];
+  myArray.push(data)
   return {
     ...state,
-      [title]: {
-        ...state[title],
-          questions: [...state[title].questions, data]
-        }
-      }
+    [title]: {
+      ...state[title],
+      questions: myArray,
+    }
+  }
 }
 
 export const data = (state = {}, action) => {

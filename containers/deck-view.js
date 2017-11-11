@@ -54,7 +54,7 @@ class DeckView extends Component {
           {cards === 0
             ? null
             : <TextButton
-                onPress={() => this.props.navigation.navigate('Quiz')}
+                onPress={() => this.props.navigation.navigate('Quiz', {title})}
                 buttonText='Start Quiz'
               />
           }

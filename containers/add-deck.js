@@ -13,9 +13,9 @@ class AddDeck extends Component {
   }
 
   buttonPress = () => {
-    let item = this.state.text
-    this.props.dispatch(addDeck(item));
-    this.props.navigation.navigate('Details', {item});
+    let title = this.state.text
+    this.props.dispatch(addDeck(title));
+    this.props.navigation.navigate('Details', {title});
     this.setState({ text: '' })
   }
 

@@ -6,37 +6,64 @@ import {
   Easing,
   Animated } from 'react-native';
 import { connect } from 'react-redux';
-import { answer, score, resetQuiz } from '../actions';
+import { NavigationActions } from 'react-navigation';
 import FlipView from 'react-native-flip-view';
-import QuizCardFront from '../components/quiz-card-front';
-import QuizCardBack from '../components/quiz-card-back';
+import QuizCard from '../components/quiz-card';
 
 class QuizView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      viewResult: false,
       isFlipped: false,
       frontOpacity: 1,
       backOpacity: 0,
-      viewResult: false,
+      currentCard: 0,
+      cards: 0,
+      correct: 0,
+      questions: [],
     }
   };
 
+  setData = () => {
+    let title = this.props.navigation.state.params.title;
+    let cards = this.props.data[title]['questions'].length
+    this.setState({
+      cards,
+      questions: this.props.data[title]['questions']
+    })
+  }
+
+  componentDidMount() {
+    this.setData();
+  }
+
   nextCard = (value) => {
-    let totalCards = (this.props.cards - 1);
-    let currentCard = this.props.currentCard;
+    let totalCards = (this.state.cards - 1);
+    let currentCard = this.state.currentCard;
     if (currentCard < totalCards) {
-      this.props.dispatch(answer(value)); // Adds 1 to currentCard and adds value to correct
+      // Add 1 to currentCard and add value to correct
+      this.setState({
+        currentCard: this.state.currentCard + 1,
+        correct: this.state.correct + value,
+        })
     } else {
-      this.setState({viewResult: !this.state.viewResult})
-      this.props.dispatch(score(value)) // Adds value to correct
+      // Add value to correct and show result
+      this.setState({
+        correct: this.state.correct + value,
+        viewResult: !this.state.viewResult
+      })
     }
     this.flipBack();
   }
 
   tryAgain = () => {
-    this.props.dispatch(resetQuiz()) // resets currentCard and correct to 0
-    this.setState({viewResult: !this.state.viewResult})
+    // Reset currentCard and correct to 0, reset result state
+    this.setState({
+      viewResult: !this.state.viewResult,
+      currentCard: 0,
+      correct: 0,
+    })
   }
 
   // Future improvement - change opacity when rotation at 90
@@ -57,7 +84,7 @@ class QuizView extends Component {
   }
 
   cardsLeft = () => {
-    let count = this.props.cards - (this.props.currentCard + 1);
+    let count = this.state.cards - (this.state.currentCard + 1);
     if (count == 1) {
       return `${count} card left`
     } else {
@@ -66,39 +93,58 @@ class QuizView extends Component {
   }
 
   finalScore = () => {
-    const score = Math.floor((this.props.correct/this.props.cards) * 100);
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home'})
+      ]
+    })
+    const score = Math.floor((this.state.correct/this.state.cards) * 100);
     return (
-      <QuizCardFront
-        frontOpacity={this.state.frontOpacity}
+      <QuizCard
+        cardOpacity={this.state.frontOpacity}
         topText={score > 70 ? 'Congratulations' : 'Study More'}
-        middleText={`You got ${score}% correct.`}
-        onPress={this.tryAgain}
-        buttonText='Retake Quiz'/>
+        mainText={`You got ${score}% correct.`}
+        blueButtonPress={this.tryAgain}
+        blueButtonText='Retake Quiz'
+        textButtonPress={() => this.props.navigation.dispatch(resetAction)}
+        textButtonText='Deck List'
+      />
     )
   };
 
   renderFront = () => (
-    <QuizCardFront
-      frontOpacity={this.state.frontOpacity}
-      topText={`${this.props.correct}/${this.props.cards} Correct`}
-      middleText={this.props.questions[this.props.currentCard]['question']}
-      onPress={this.flip}
-      buttonText='See Answer'/>
+    <QuizCard
+      cardOpacity={this.state.frontOpacity}
+      topText={`${this.state.correct}/${this.state.cards} Correct`}
+      mainText={this.state.questions[this.state.currentCard]['question']}
+      blueButtonPress={this.flip}
+      blueButtonText='See Answer'/>
     );
 
   renderBack = () => (
-    <QuizCardBack
-      backOpacity={this.state.backOpacity}
+    <QuizCard
+      cardOpacity={this.state.backOpacity}
       topText={this.cardsLeft()}
-      backText={this.props.questions[this.props.currentCard]['answer']}
-      onCorrect={() => this.nextCard(1)}
-      onIncorrect={() => this.nextCard(0)}/>
+      mainText={this.state.questions[this.state.currentCard]['answer']}
+      blueButtonPress={() => this.nextCard(1)}
+      blueButtonText='Correct'
+      textButtonPress={() => this.nextCard(0)}
+      textButtonText='Incorrect'
+    />
   );
 
   render() {
+    if (this.state.questions.length === 0) {
+      return (
+        <View style={{flex:1, justifyContent: 'center', alignItems: 'center',}}>
+          <Text>Are you ready for this?</Text>
+        </View>
+      )
+    }
     return (
       <FlipView
-        style={{flex: 1}}
+        style={{flex: 1,}}
         front={
           this.state.viewResult
           ? this.finalScore()
@@ -113,11 +159,8 @@ class QuizView extends Component {
   };
 };
 
-const mapStateToProps = ({ deck }) => ({
-  cards: deck.cards,
-  correct: deck.correct,
-  currentCard: deck.currentCard,
-  questions: deck.questions,
+const mapStateToProps = ({ data }) => ({
+  data
 });
 
 export default connect(mapStateToProps)(QuizView)

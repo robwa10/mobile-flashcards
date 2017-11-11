@@ -19,28 +19,24 @@ class AddCard extends Component {
 
   buttonPress = () => {
     let title = this.props.navigation.state.params.title;
-    const navigateAction = NavigationActions.navigate({
-      routeName: 'Details',
-      params: {title},
-      action: NavigationActions.reset({
-        index: 1,
-        actions: [
-          NavigationActions.navigate({ routeName: 'Home'}),
-          NavigationActions.navigate({ routeName: 'Details'})
-        ]
-      })
+    console.log(title);
+    const resetAction = NavigationActions.reset({
+      index: 1,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home' }),
+        NavigationActions.navigate({ routeName: 'Details', params: {title} })
+      ]
     })
-
     this.props.dispatch(addCardToDeck(title, this.state));
     this.setState({ question: '', answer: '', });
-    this.props.navigation.dispatch(navigateAction);
+    this.props.navigation.dispatch(resetAction);
   }
 
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
         <FormInput
-          containerStyles={{marginBottom: 10}}
+          containerStyles={styles.formContainer}
           text='Question'
           placeholder='Why did the chicken cross the road?'
           value={this.state.question}
@@ -49,7 +45,7 @@ class AddCard extends Component {
           inputStyles={styles.input}
         />
         <FormInput
-          containerStyles={{marginBottom: 10}}
+          containerStyles={styles.formContainer}
           text='Answer'
           placeholder='To get to the other side.'
           value={this.state.answer}
@@ -73,6 +69,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 15,
   },
+  formContainer: {
+    marginBottom: 10
+  },
   text: {
     fontSize: 20,
     marginBottom: 2,
@@ -83,8 +82,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ deck }) => ({
-  deck,
-});
-
-export default connect(mapStateToProps)(AddCard);
+export default connect()(AddCard);

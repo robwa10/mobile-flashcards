@@ -26,6 +26,7 @@ class DecksList extends Component {
   }
 
   componentDidMount() {
+    // AsyncStorage.clear()
     this.getData()
     clearLocalNotification()
     .then(setLocalNotification())
