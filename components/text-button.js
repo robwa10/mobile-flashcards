@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { blue } from '../utils/styles';
+import { blue, fontLarge } from '../utils/styles';
 
 export default TextButton = ({ onPress, buttonText }) => (
   <TouchableOpacity
@@ -12,12 +12,14 @@ export default TextButton = ({ onPress, buttonText }) => (
 
 const styles = StyleSheet.create({
   container: {
-      padding: 10,
-      marginVertical: 10,
-    },
+    width: 200,
+    alignSelf: 'center',
+    padding: 10,
+    marginVertical: 10,
+  },
   text: {
-    fontSize: 32,
+    fontSize: fontLarge,
     color: blue,
     textAlign: 'center',
-  }
+  },
 })

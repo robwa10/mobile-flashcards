@@ -7,6 +7,7 @@ import {
   Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import { centerContent } from '../utils/styles';
 import FlipView from 'react-native-flip-view';
 import QuizCard from '../components/quiz-card';
 
@@ -137,14 +138,14 @@ class QuizView extends Component {
   render() {
     if (this.state.questions.length === 0) {
       return (
-        <View style={{flex:1, justifyContent: 'center', alignItems: 'center',}}>
+        <View style={centerContent}>
           <Text>Are you ready for this?</Text>
         </View>
       )
     }
     return (
       <FlipView
-        style={{flex: 1,}}
+        style={centerContent}
         front={
           this.state.viewResult
           ? this.finalScore()

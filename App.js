@@ -9,7 +9,7 @@ import throttle from 'lodash/throttle';
 import { saveState } from './utils/localStorage';
 import { TabNavigator, StackNavigator, } from 'react-navigation';
 import { Constants } from 'expo';
-import { blue } from './utils/styles';
+import { centerContent, blue, white } from './utils/styles';
 import DecksList from './containers/decks-list';
 import DeckView from './containers/deck-view';
 import AddDeck from './containers/add-deck';
@@ -77,16 +77,9 @@ const MainNavigator = StackNavigator({
 
 export default App = () => (
   <Provider store={store}>
-    <View style={styles.container}>
+    <View style={{flex: 1}}>
       <UdaciStatusBar backgroundColor={blue} barStyle="light-content" />
       <MainNavigator />
     </View>
   </Provider>
 )
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});

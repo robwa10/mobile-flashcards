@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { addCardToDeck } from '../actions';
 import FormInput from '../components/form-input';
-import { blue, mainText, } from '../utils/styles';
+import {
+  centerContent,
+  formContainer,
+  inputStyles,
+  smallTextStyles,
+  mainText, } from '../utils/styles';
 import TextButton from '../components/text-button';
 
 class AddCard extends Component {
@@ -34,15 +44,15 @@ class AddCard extends Component {
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.container} behavior='padding'>
+      <KeyboardAvoidingView style={styles.centerContent} behavior='padding'>
         <FormInput
           containerStyles={styles.formContainer}
           text='Question'
           placeholder='Why did the chicken cross the road?'
           value={this.state.question}
           onChangeText={(question) => this.setState({question})}
-          textStyles={styles.text}
-          inputStyles={styles.input}
+          textStyles={[styles.smallTextStyles, {color: mainText}]}
+          inputStyles={styles.inputStyles}
         />
         <FormInput
           containerStyles={styles.formContainer}
@@ -50,8 +60,8 @@ class AddCard extends Component {
           placeholder='To get to the other side.'
           value={this.state.answer}
           onChangeText={(answer) => this.setState({answer})}
-          textStyles={styles.text}
-          inputStyles={styles.input}
+          textStyles={[styles.smallTextStyles, {color: mainText}]}
+          inputStyles={styles.inputStyles}
         />
         <TextButton
             onPress={() => this.buttonPress()}
@@ -63,23 +73,10 @@ class AddCard extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFF',
-    justifyContent: 'center',
-    paddingHorizontal: 15,
-  },
-  formContainer: {
-    marginBottom: 10
-  },
-  text: {
-    fontSize: 20,
-    marginBottom: 2,
-  },
-  input: {
-    fontSize: 20,
-    height: 50,
-  }
+  centerContent,
+  formContainer,
+  smallTextStyles,
+  inputStyles,
 });
 
 export default connect()(AddCard);

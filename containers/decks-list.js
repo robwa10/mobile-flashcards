@@ -10,7 +10,7 @@ import { AppLoading } from 'expo';
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 import DeckInfoCard from '../components/deck-info-card';
 import { addDeck, getDeck, loadData, deleteDeck, } from '../actions';
-import { blue, mainText, secondaryText, } from '../utils/styles';
+import { centerContent, blue, white, mainText, secondaryText, } from '../utils/styles';
 
 class DecksList extends Component {
   constructor(props) {
@@ -66,7 +66,7 @@ class DecksList extends Component {
       return <AppLoading />
     }
     return (
-      <View>
+      <View style={styles.centerContent}>
         <FlatList
           data={this.mapDeckTitles()}
           renderItem={({item}) => this.renderDeckCard(item)}
@@ -83,10 +83,10 @@ const mapStateToProps = ({ data }) => ({
 export default connect(mapStateToProps)(DecksList);
 
 const styles = StyleSheet.create({
+  centerContent,
   containerStyles: {
-    backgroundColor: '#FFF',
+    backgroundColor: white,
     paddingVertical: 30,
-    marginHorizontal: 5,
     marginVertical: 2,
   },
   titleStyles: {

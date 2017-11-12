@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, } from 'react-native';
 import { connect } from 'react-redux';
-import { blue, mainText, secondaryText, white} from '../utils/styles';
+import {
+  centerContent,
+  mainTextStyles,
+  smallTextStyles,
+  buttonContainer, } from '../utils/styles';
 import { AppLoading } from 'expo';
 import BlueButton from '../components/blue-button';
 import TextButton from '../components/text-button';
@@ -39,10 +43,10 @@ class DeckView extends Component {
   renderDeckCard = () => {
     let { title, cards } = this.state;
     return(
-      <View style={styles.container}>
+      <View style={styles.centerContent}>
         <View style={styles.textContainer}>
-          <Text style={styles.titleText}>{title}</Text>
-          <Text style={styles.cardText}>
+          <Text style={styles.mainTextStyles}>{title}</Text>
+          <Text style={styles.smallTextStyles}>
             {cards} {cards == 1 ? 'card' : 'cards'}
           </Text>
         </View>
@@ -78,29 +82,13 @@ mapStateToProps = ({ data }) => ({
 export default connect(mapStateToProps)(DeckView);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: white,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  centerContent,
   textContainer: {
     flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  titleText: {
-    fontSize: 36,
-    color: mainText,
-    textAlign: 'center',
-  },
-  cardText: {
-    fontSize: 20,
-    marginTop: 10,
-    color: secondaryText,
-  },
-  buttonContainer: {
-    flex: 1,
-    justifyContent: 'center'
-  },
+  mainTextStyles,
+  smallTextStyles,
+  buttonContainer,
 });

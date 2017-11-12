@@ -4,7 +4,10 @@ import {
   View,
   Text,
   TouchableOpacity, } from 'react-native';
-import { blue, mainText, secondaryText, } from '../utils/styles';
+import {
+  buttonContainer,
+  mainTextStyles,
+  smallTextStyles, } from '../utils/styles';
 import BlueButton from '../components/blue-button';
 import TextButton from '../components/text-button';
 
@@ -18,8 +21,8 @@ export default QuizCard = ({
   textButtonText,
 }) => (
   <View style={[styles.container, {opacity: cardOpacity}]}>
-    <Text style={styles.smallText}>{topText}</Text>
-    <Text style={styles.mainText}>{mainText}</Text>
+    <Text style={styles.smallTextStyles}>{topText}</Text>
+    <Text style={styles.mainTextStyles}>{mainText}</Text>
     <View style={styles.buttonContainer}>
       { blueButtonPress
         ? <BlueButton
@@ -40,22 +43,10 @@ export default QuizCard = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
     justifyContent: 'space-around',
     alignItems: 'center',
-    paddingHorizontal: 20,
   },
-  buttonContainer: {
-    justifyContent: 'center'
-  },
-  smallText: {
-    fontSize: 16,
-    marginTop: 10,
-    color: secondaryText
-  },
-  mainText: {
-    textAlign: 'center',
-    fontSize: 32,
-    color: mainText
-  },
+  buttonContainer,
+  smallTextStyles,
+  mainTextStyles,
 });
