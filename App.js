@@ -35,8 +35,6 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
   )
 }
 
-
-
 export default App = () => (
   <Provider store={store}>
     <View style={{flex: 1}}>
@@ -44,4 +42,4 @@ export default App = () => (
       <MainNavigator />
     </View>
   </Provider>
-)
+);

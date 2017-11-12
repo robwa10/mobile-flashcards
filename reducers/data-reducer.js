@@ -42,34 +42,3 @@ export const data = (state = {}, action) => {
       return state;
   }
 }
-
-export const deck = (state = {}, action) => {
-  switch (action.type) {
-    case GET_DECK:
-      return action.id
-    case ADD_CARD:
-      return {
-        ...state,
-        questions: [...state, data]
-      }
-    case ANSWER:
-      return {
-        ...state,
-        currentCard: state['currentCard'] + 1,
-        correct: state['correct'] + action.value,
-      }
-    case SCORE:
-      return {
-        ...state,
-        correct: state['correct'] + action.value,
-      }
-    case RESET_QUIZ:
-      return {
-        ...state,
-        currentCard: 0,
-        correct: 0,
-      }
-    default:
-      return state;
-  }
-}

@@ -29,7 +29,6 @@ class AddCard extends Component {
 
   buttonPress = () => {
     let title = this.props.navigation.state.params.title;
-    console.log(title);
     const resetAction = NavigationActions.reset({
       index: 1,
       actions: [
@@ -37,7 +36,7 @@ class AddCard extends Component {
         NavigationActions.navigate({ routeName: 'Details', params: {title} })
       ]
     })
-    this.props.dispatch(addCardToDeck(title, this.state));
+    this.props.addCardToDeck(title, this.state);
     this.setState({ question: '', answer: '', });
     this.props.navigation.dispatch(resetAction);
   }
@@ -79,4 +78,4 @@ const styles = StyleSheet.create({
   inputStyles,
 });
 
-export default connect()(AddCard);
+export default connect(null, { addCardToDeck })(AddCard);

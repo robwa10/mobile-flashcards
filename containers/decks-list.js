@@ -9,8 +9,13 @@ import { connect } from 'react-redux';
 import { AppLoading } from 'expo';
 import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
 import DeckInfoCard from '../components/deck-info-card';
-import { addDeck, getDeck, loadData, deleteDeck, } from '../actions';
-import { centerContent, blue, white, mainText, secondaryText, } from '../utils/styles';
+import { loadData } from '../actions';
+import {
+  centerContent,
+  blue,
+  white,
+  mainText,
+  secondaryText, } from '../utils/styles';
 
 class DecksList extends Component {
   constructor(props) {
@@ -21,7 +26,7 @@ class DecksList extends Component {
   getData() {
     AsyncStorage.getItem('state')
     .then(response => JSON.parse(response))
-    .then(response => (response !== null ? this.props.dispatch(loadData(response)) : console.log('Null Response')))
+    .then(response => (response !== null ? this.props.loadData(response) : console.log('Null Response')))
     .then(this.setState({ isReady:true }))
   }
 
@@ -80,7 +85,7 @@ const mapStateToProps = ({ data }) => ({
   data,
 })
 
-export default connect(mapStateToProps)(DecksList);
+export default connect(mapStateToProps, { loadData })(DecksList);
 
 const styles = StyleSheet.create({
   centerContent,

@@ -23,7 +23,7 @@ class AddDeck extends Component {
 
   buttonPress = () => {
     let title = this.state.text
-    this.props.dispatch(addDeck(title));
+    this.props.addDeck(title);
     this.props.navigation.navigate('Details', {title});
     this.setState({ text: '' })
   }
@@ -49,7 +49,7 @@ class AddDeck extends Component {
   }
 }
 
-export default connect()(AddDeck);
+export default connect(null, { addDeck })(AddDeck);
 
 const styles = StyleSheet.create({
   centerContent,
