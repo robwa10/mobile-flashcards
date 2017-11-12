@@ -15,6 +15,7 @@ export const fontSmall = 18;
 // Container styles in alphabetical order
 export const buttonContainer = {
   justifyContent: 'center',
+  marginBottom: 20,
 }
 
 export const centerContent = {
