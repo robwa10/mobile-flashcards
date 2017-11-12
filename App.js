@@ -1,20 +1,20 @@
 import './ReactotronConfig';
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar, } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  StatusBar, } from 'react-native';
 import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware, } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from './reducers';
 import throttle from 'lodash/throttle';
 import { saveState } from './utils/localStorage';
-import { TabNavigator, StackNavigator, } from 'react-navigation';
 import { Constants } from 'expo';
-import { centerContent, blue, white } from './utils/styles';
-import DecksList from './containers/decks-list';
-import DeckView from './containers/deck-view';
-import AddDeck from './containers/add-deck';
-import AddCard from './containers/add-card';
-import QuizView from './containers/quiz-view';
+import { blue } from './utils/styles';
+import MainNavigator from './components/main-navigator';
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, composeEnhancers(
@@ -35,45 +35,7 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
   )
 }
 
-const HomeNavigator = TabNavigator({
-  Home: {
-    screen: DecksList,
-    navigationOptions: {
-      headerTitle: 'Home',
-    }
-  },
-  New: {
-    screen: AddDeck,
-    navigationOptions: {
-      headerTitle: 'New Deck',
-    },
-  },
-});
 
-const MainNavigator = StackNavigator({
-  Home: {
-    screen: HomeNavigator,
-  },
-  Details: {
-    screen: DeckView,
-    navigationOptions: {
-      headerTitle: 'Details',
-    },
-  },
-  NewCard: {
-    screen: AddCard,
-    navigationOptions: {
-      headerTitle: 'New Card',
-    },
-  },
-  Quiz: {
-    screen: QuizView,
-    navigationOptions: {
-      headerTitle: 'Quiz',
-      headerBackTitle: null,
-    }
-  }
-});
 
 export default App = () => (
   <Provider store={store}>
