@@ -18,14 +18,27 @@ import TextButton from '../components/text-button';
 class AddDeck extends Component {
   constructor(props) {
     super(props);
-    this.state = { text: '' }
+    this.state = {
+      text: '',
+      formTitle: "What's your new deck's title?",
+    }
+  }
+
+  validateInput = () => {
+    let title = this.state.text
+    if ( title === '') {
+      this.setState({
+        formTitle: "YOU NEED A TITLE!",
+      })
+    } else {
+      this.props.addDeck(title);
+      this.props.navigation.navigate('Details', {title});
+      this.setState({ text: '' })
+    }
   }
 
   buttonPress = () => {
-    let title = this.state.text
-    this.props.addDeck(title);
-    this.props.navigation.navigate('Details', {title});
-    this.setState({ text: '' })
+    this.validateInput()
   }
 
   render() {
@@ -33,7 +46,7 @@ class AddDeck extends Component {
       <KeyboardAvoidingView style={styles.centerContent} behavior='padding'>
         <FormInput
           containerStyles={styles.formContainer}
-          text="What's your new deck's title?"
+          text={this.state.formTitle}
           placeholder='Deck Title'
           value={this.state.text}
           onChangeText={(text) => this.setState({text})}
