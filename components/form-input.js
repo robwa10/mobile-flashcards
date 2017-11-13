@@ -1,20 +1,23 @@
-import React from 'react';
-import {View, Text, TextInput } from 'react-native';
+import React from 'react'
+import { View, Text, TextInput } from 'react-native'
 
-export default FormInput = ({
+const FormInput = ({
   containerStyles,
   text,
   textStyles,
   inputStyles,
   placeholder,
   value,
-  onChangeText, }) => (
+  onChangeText
+}) => (
   <View style={containerStyles}>
     <Text style={textStyles}>{text}</Text>
     <TextInput
       style={inputStyles}
       placeholder={placeholder}
       value={value}
-      onChangeText={onChangeText}/>
+      onChangeText={onChangeText} />
   </View>
 )
+
+export default FormInput

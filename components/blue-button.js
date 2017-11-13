@@ -1,12 +1,12 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { greyBackground, fontLarge, blue } from '../utils/styles';
+import React from 'react'
+import { StyleSheet, TouchableOpacity, Text } from 'react-native'
+import { greyBackground, fontLarge, blue } from '../utils/styles'
 
-export default BlueButton = ({ onPress, buttonText }) => (
+const BlueButton = ({ onPress, buttonText }) => (
   <TouchableOpacity
     style={styles.container}
     onPress={onPress}>
-      <Text style={styles.text}>{buttonText}</Text>
+    <Text style={styles.text}>{buttonText}</Text>
   </TouchableOpacity>
 )
 
@@ -17,11 +17,13 @@ const styles = StyleSheet.create({
     backgroundColor: blue,
     borderRadius: 2,
     padding: 8,
-    marginVertical: 8,
-    },
+    marginVertical: 8
+  },
   text: {
     fontSize: fontLarge,
     color: greyBackground,
-    textAlign: 'center',
+    textAlign: 'center'
   }
 })
+
+export default BlueButton

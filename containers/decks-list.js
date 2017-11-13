@@ -1,59 +1,56 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { StyleSheet,
   FlatList,
   View,
-  Text,
-  Alert,
-  AsyncStorage, } from 'react-native';
-import { connect } from 'react-redux';
-import { AppLoading } from 'expo';
-import { clearLocalNotification, setLocalNotification } from '../utils/notifications';
-import DeckInfoCard from '../components/deck-info-card';
-import { loadData } from '../actions';
+  AsyncStorage } from 'react-native'
+import { connect } from 'react-redux'
+import { AppLoading } from 'expo'
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
+import DeckInfoCard from '../components/deck-info-card'
+import { loadData } from '../actions'
 import {
   centerContent,
-  blue,
   white,
   mainText,
-  secondaryText, } from '../utils/styles';
+  secondaryText } from '../utils/styles'
 
 class DecksList extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = { isReady: false }
   }
 
-  getData() {
+  getData () {
     AsyncStorage.getItem('state')
     .then(response => JSON.parse(response))
     .then(response => (response !== null ? this.props.loadData(response) : console.log('Null Response')))
-    .then(this.setState({ isReady:true }))
+    .then(this.setState({ isReady: true }))
   }
 
-  componentDidMount() {
+  componentDidMount () {
     // AsyncStorage.clear()
     this.getData()
     clearLocalNotification()
     .then(setLocalNotification())
   }
 
-  mapDeckTitles() {
-    let data = this.props.data;
-    let myArray = [];
-    for(let key in data) {
+  mapDeckTitles () {
+    let data = this.props.data
+    let myArray = []
+    for (let key in data) {
       myArray.push({
         key: key,
-        cards: data[key]['questions'].length,
+        cards: data[key]['questions'].length
       })
     }
     return myArray
   }
 
-  getCard = (title) => {
-    this.props.navigation.navigate('Details', {title});
-  };
+  getCard (title) {
+    this.props.navigation.navigate('Details', {title})
+  }
 
-  renderDeckCard = (item) => {
+  renderDeckCard (item) {
     return (
       <DeckInfoCard
         onPress={() => this.getCard(item.key)}
@@ -66,7 +63,7 @@ class DecksList extends Component {
     )
   }
 
-  render() {
+  render () {
     if (!this.state.isReady) {
       return <AppLoading />
     }
@@ -77,31 +74,31 @@ class DecksList extends Component {
           renderItem={({item}) => this.renderDeckCard(item)}
         />
       </View>
-    );
+    )
   }
 }
 
 const mapStateToProps = ({ data }) => ({
-  data,
+  data
 })
 
-export default connect(mapStateToProps, { loadData })(DecksList);
+export default connect(mapStateToProps, { loadData })(DecksList)
 
 const styles = StyleSheet.create({
   centerContent,
   containerStyles: {
     backgroundColor: white,
     paddingVertical: 30,
-    marginVertical: 2,
+    marginVertical: 2
   },
   titleStyles: {
     textAlign: 'center',
     fontSize: 24,
-    color: mainText,
+    color: mainText
   },
   textStyles: {
     textAlign: 'center',
     fontSize: 18,
-    color: secondaryText,
+    color: secondaryText
   }
-});
+})

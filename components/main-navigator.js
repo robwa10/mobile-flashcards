@@ -1,46 +1,48 @@
-import { TabNavigator, StackNavigator, } from 'react-navigation';
-import DecksList from '../containers/decks-list';
-import DeckView from '../containers/deck-view';
-import AddDeck from '../containers/add-deck';
-import AddCard from '../containers/add-card';
-import QuizView from '../containers/quiz-view';
+import { TabNavigator, StackNavigator } from 'react-navigation'
+import DecksList from '../containers/decks-list'
+import DeckView from '../containers/deck-view'
+import AddDeck from '../containers/add-deck'
+import AddCard from '../containers/add-card'
+import QuizView from '../containers/quiz-view'
 
 const HomeNavigator = TabNavigator({
   Home: {
     screen: DecksList,
     navigationOptions: {
-      headerTitle: 'Home',
+      headerTitle: 'Home'
     }
   },
   New: {
     screen: AddDeck,
     navigationOptions: {
-      headerTitle: 'New Deck',
-    },
-  },
-});
+      headerTitle: 'New Deck'
+    }
+  }
+})
 
-export default MainNavigator = StackNavigator({
+const MainNavigator = StackNavigator({
   Home: {
-    screen: HomeNavigator,
+    screen: HomeNavigator
   },
   Details: {
     screen: DeckView,
     navigationOptions: {
-      headerTitle: 'Details',
-    },
+      headerTitle: 'Details'
+    }
   },
   NewCard: {
     screen: AddCard,
     navigationOptions: {
-      headerTitle: 'New Card',
-    },
+      headerTitle: 'New Card'
+    }
   },
   Quiz: {
     screen: QuizView,
     navigationOptions: {
       headerTitle: 'Quiz',
-      headerBackTitle: null,
+      headerBackTitle: null
     }
   }
-});
+})
+
+export default MainNavigator

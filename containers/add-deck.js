@@ -1,47 +1,44 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
-  View,
-  Text,
-  TextInput,
-  KeyboardAvoidingView, } from 'react-native';
-import { connect } from 'react-redux';
-import { addDeck } from '../actions';
-import FormInput from '../components/form-input';
+  KeyboardAvoidingView } from 'react-native'
+import { connect } from 'react-redux'
+import { addDeck } from '../actions'
+import FormInput from '../components/form-input'
 import {
   centerContent,
   formContainer,
   smallTextStyles,
-  inputStyles } from '../utils/styles';
-import TextButton from '../components/text-button';
+  inputStyles } from '../utils/styles'
+import TextButton from '../components/text-button'
 
 class AddDeck extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       text: '',
-      formTitle: "What's your new deck's title?",
+      formTitle: "What's your new deck's title?"
     }
   }
 
-  validateInput = () => {
+  validateInput () {
     let title = this.state.text
-    if ( title === '') {
+    if (title === '') {
       this.setState({
-        formTitle: "YOU NEED A TITLE!",
+        formTitle: 'YOU NEED A TITLE!'
       })
     } else {
-      this.props.addDeck(title);
-      this.props.navigation.navigate('Details', {title});
+      this.props.addDeck(title)
+      this.props.navigation.navigate('Details', {title})
       this.setState({ text: '' })
     }
   }
 
-  buttonPress = () => {
+  buttonPress () {
     this.validateInput()
   }
 
-  render() {
+  render () {
     return (
       <KeyboardAvoidingView style={styles.centerContent} behavior='padding'>
         <FormInput
@@ -62,11 +59,11 @@ class AddDeck extends Component {
   }
 }
 
-export default connect(null, { addDeck })(AddDeck);
+export default connect(null, { addDeck })(AddDeck)
 
 const styles = StyleSheet.create({
   centerContent,
   formContainer,
   smallTextStyles,
-  inputStyles,
-});
+  inputStyles
+})

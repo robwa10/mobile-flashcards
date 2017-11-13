@@ -1,64 +1,63 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   StyleSheet,
-  View,
-  Text,
-  TextInput,
-  KeyboardAvoidingView } from 'react-native';
-import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
-import { addCardToDeck } from '../actions';
-import FormInput from '../components/form-input';
+  KeyboardAvoidingView } from 'react-native'
+import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
+import { addCardToDeck } from '../actions'
+import FormInput from '../components/form-input'
 import {
   centerContent,
   formContainer,
   inputStyles,
   smallTextStyles,
-  mainText, } from '../utils/styles';
-import TextButton from '../components/text-button';
+  mainText } from '../utils/styles'
+import TextButton from '../components/text-button'
 
 class AddCard extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       question: '',
       answer: '',
       questionTitle: 'Question',
-      answerTitle: 'Answer',
+      answerTitle: 'Answer'
     }
   }
 
-  validateQuestion = () => {
-    let question = this.state.question;
-    if ( question === '' || question.length < 3) {
+  validateQuestion () {
+    let question = this.state.question
+    if (question === '' || question.length < 3) {
       this.setState({
-        questionTitle: "YOU NEED A QUESTION!",
-      });
+        questionTitle: 'YOU NEED A QUESTION!'
+      })
+      return false
     } else {
       this.setState({
-        questionTitle: 'Question',
-      });
-      return true;
+        questionTitle: 'Question'
+      })
+      return true
     }
   }
 
-  validateAnswer = () => {
-  let answer = this.state.answer;
-    if ( answer === '' ) {
+  validateAnswer () {
+    let answer = this.state.answer
+    if (answer === '') {
       this.setState({
-        answerTitle: "YOU NEED AN ANSWER!",
-      });
+        answerTitle: 'YOU NEED AN ANSWER!'
+      })
+      return false
     } else {
       this.setState({
-        answerTitle: 'Answer',
-      });
-      return true;
+        answerTitle: 'Answer'
+      })
+      return true
     }
   }
 
-  validateInput = () => {
+  validateInput () {
     if (this.validateQuestion() & this.validateAnswer()) {
-      let title = this.props.navigation.state.params.title;
+      let title = this.props.navigation.state.params.title
       const resetAction = NavigationActions.reset({
         index: 1,
         actions: [
@@ -66,17 +65,17 @@ class AddCard extends Component {
           NavigationActions.navigate({ routeName: 'Details', params: {title} })
         ]
       })
-      this.props.addCardToDeck(title, this.state);
-      this.setState({ question: '', answer: '', });
-      this.props.navigation.dispatch(resetAction);
+      this.props.addCardToDeck(title, this.state)
+      this.setState({ question: '', answer: '' })
+      this.props.navigation.dispatch(resetAction)
     };
   }
 
-  buttonPress = () => {
-    this.validateInput();
+  buttonPress () {
+    this.validateInput()
   }
 
-  render() {
+  render () {
     return (
       <KeyboardAvoidingView style={styles.centerContent} behavior='padding'>
         <FormInput
@@ -98,8 +97,8 @@ class AddCard extends Component {
           inputStyles={styles.inputStyles}
         />
         <TextButton
-            onPress={() => this.buttonPress()}
-            buttonText='Submit'
+          onPress={() => this.buttonPress()}
+          buttonText='Submit'
         />
       </KeyboardAvoidingView>
     )
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
   centerContent,
   formContainer,
   smallTextStyles,
-  inputStyles,
-});
+  inputStyles
+})
 
-export default connect(null, { addCardToDeck })(AddCard);
+export default connect(null, { addCardToDeck })(AddCard)

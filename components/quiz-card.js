@@ -1,24 +1,23 @@
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   View,
-  Text,
-  TouchableOpacity, } from 'react-native';
+  Text } from 'react-native'
 import {
   buttonContainer,
   mainTextStyles,
-  smallTextStyles, } from '../utils/styles';
-import BlueButton from '../components/blue-button';
-import TextButton from '../components/text-button';
+  smallTextStyles } from '../utils/styles'
+import BlueButton from '../components/blue-button'
+import TextButton from '../components/text-button'
 
-export default QuizCard = ({
+const QuizCard = ({
   cardOpacity,
   topText,
   mainText,
   blueButtonPress,
   textButtonPress,
   blueButtonText,
-  textButtonText,
+  textButtonText
 }) => (
   <View style={[styles.container, {opacity: cardOpacity}]}>
     <Text style={styles.smallTextStyles}>{topText}</Text>
@@ -38,15 +37,17 @@ export default QuizCard = ({
       }
     </View>
   </View>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   buttonContainer,
   smallTextStyles,
-  mainTextStyles,
-});
+  mainTextStyles
+})
+
+export default QuizCard

@@ -1,24 +1,24 @@
-import { AsyncStorage } from 'react-native';
-import { Notifications, Permissions } from 'expo';
+import { AsyncStorage } from 'react-native'
+import { Notifications, Permissions } from 'expo'
 
-const NOTIFICATION_KEY = 'Readable:notifications';
+const NOTIFICATION_KEY = 'Readable:notifications'
 
 export const clearLocalNotification = () => (
   AsyncStorage.removeItem(NOTIFICATION_KEY)
   .then(Notifications.cancelAllScheduledNotificationsAsync)
-);
+)
 
 const createNotification = () => ({
   title: 'Study, study, study!',
   body: "Let's take 5 minutes to study!",
   ios: {
-    sound: true,
+    sound: true
   },
   android: {
     sound: true,
-    sticky: false,
-  },
-});
+    sticky: false
+  }
+})
 
 export const setLocalNotification = () => {
   AsyncStorage.getItem(NOTIFICATION_KEY)
@@ -30,7 +30,7 @@ export const setLocalNotification = () => {
         if (status === 'granted') {
           Notifications.cancelAllScheduledNotificationsAsync()
 
-          let tomorrow = new Date();
+          let tomorrow = new Date()
           tomorrow.setDate(tomorrow.getDate() + 1)
           tomorrow.setHours(20)
           tomorrow.setMinutes(0)
@@ -39,7 +39,7 @@ export const setLocalNotification = () => {
             createNotification(),
             {
               time: tomorrow,
-              repeat: 'day',
+              repeat: 'day'
             }
           )
 

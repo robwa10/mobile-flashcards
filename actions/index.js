@@ -6,19 +6,18 @@ import {
   DELETE_DECK,
   ANSWER,
   SCORE,
-  RESET_QUIZ,
-} from './action-constants';
-import { AsyncStorage } from 'react-native';
+  RESET_QUIZ
+} from './action-constants'
 
 export const addDeck = title => ({
   type: ADD_DECK,
-  title,
+  title
 })
 
 export const addCardToDeck = (title, data) => ({
   type: ADD_CARD,
   title,
-  data,
+  data
 })
 
 export const getDeck = id => ({
@@ -32,19 +31,19 @@ export const loadData = (response) => ({
 })
 
 export const deleteDeck = (key) => ({
-  type: DELETE_DECK,
+  type: DELETE_DECK
 })
 
 export const answer = (value) => ({
   type: ANSWER,
-  value,
+  value
 })
 
 export const score = (value) => ({
   type: SCORE,
-  value,
+  value
 })
 
 export const resetQuiz = () => ({
-  type: RESET_QUIZ,
+  type: RESET_QUIZ
 })
