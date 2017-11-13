@@ -5,6 +5,7 @@ Copyright 2016 Robert Hubbard.
 Licensed under the MIT License.  
 Free for personal or educational use.  
 All work is my own unless otherwise noted.  
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)  
 
 ## Getting Started
 ### Install and start
