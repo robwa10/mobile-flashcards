@@ -1,17 +1,17 @@
 import {
   ADD_DECK,
   ADD_CARD,
-  GET_DECK,
-} from '../actions/action-constants';
+  GET_DECK
+} from '../actions/action-constants'
 import {
   mockState,
   mockNewDeckState,
   mockNewQuestionState,
   mockQuestion,
-  mockDeck,
-} from '../utils/mock-state-data';
-import data from '../reducers/data-reducer';
-import deck from '../reducers/deck-reducer';
+  mockDeck
+} from '../utils/mock-state-data'
+import data from '../reducers/data-reducer'
+import deck from '../reducers/deck-reducer'
 
 describe('data reducer', () => {
   it('should return the initial state', () => {
@@ -29,7 +29,7 @@ describe('data reducer', () => {
     expect(data(mockNewQuestionState, {
       type: ADD_CARD,
       title: 'JavaScript',
-      data: mockQuestion,
+      data: mockQuestion
     })
   ).toEqual(mockState)
   })
@@ -43,7 +43,7 @@ describe('deck reducer', () => {
   it('should return individual deck', () => {
     expect(deck(mockState, {
       type: GET_DECK,
-      id: 'JavaScript',
+      id: 'JavaScript'
     })
   ).toEqual(mockDeck)
   })
