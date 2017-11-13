@@ -55,9 +55,9 @@ class AddCard extends Component {
     }
   }
 
-  validateInput () {
+  buttonPress () {
     if (this.validateQuestion() & this.validateAnswer()) {
-      let title = this.props.navigation.state.params.title
+      const title = this.props.navigation.state.params.title
       const resetAction = NavigationActions.reset({
         index: 1,
         actions: [
@@ -68,11 +68,7 @@ class AddCard extends Component {
       this.props.addCardToDeck(title, this.state)
       this.setState({ question: '', answer: '' })
       this.props.navigation.dispatch(resetAction)
-    };
-  }
-
-  buttonPress () {
-    this.validateInput()
+    }
   }
 
   render () {
@@ -112,4 +108,8 @@ const styles = StyleSheet.create({
   inputStyles
 })
 
-export default connect(null, { addCardToDeck })(AddCard)
+const mapStateToProps = ({ data }) => ({
+  data
+})
+
+export default connect(mapStateToProps, { addCardToDeck })(AddCard)
